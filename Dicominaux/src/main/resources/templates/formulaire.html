@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head th:insert="fragments/fragments.html :: header"/>
+	
+	<body>
+		
+		<div th:replace="fragments/fragments.html :: navigation"></div>
+		
+		<div class="container">
+	
+			<div class="starter-template">
+				<h1>Formulaire</h1>
+				
+				<div class="card">
+				  <div class="card-header">
+				    Exemple th:text
+				  </div>
+				  <div class="card-body">
+				    <form action="#" th:action="@{/etudiant}" th:object="${etudiant}" method="post">
+					     <div class="form-group">
+					    	<label for="prenom" th:text="#{etudiant.prenom}" /></label>
+					    	<input type="text" th:field="*{prenom}" class="form-control" id="prenom" placeholder="Prenom de l'etudiant">
+					    	<small id="nomHelp" class="form-text text-muted">Inserez le prenom de l'etudiant</small>
+					    </div>
+					    
+					    <div class="form-group">
+					    	<label for="nom" th:text="#{etudiant.prenom}" /></label>
+					    	<input type="text" th:field="*{nom}" class="form-control" id="nom" placeholder="Nom de l'etudiant">
+					    	<small id="nomHelp" class="form-text text-muted">Inserez le nom de l'etudiant</small>
+					    </div>
+					    
+					    
+					    <div class="form-group">
+					    	<label for="age" th:text="#{etudiant.age}" /></label>
+					    	<input type="number" th:field="*{age}" class="form-control" id="age" placeholder="Age de l'etudiant">
+					    	<small id="ageHelp" class="form-text text-muted">Inserez l'age de l'etudiant</small>
+					    </div>
+					    
+					    <div class="form-group">
+					    	<label for="sexe" th:text="#{etudiant.sexe}" /></label>
+					    	<select class="form-control" id="sexe" th:field="*{sexe}">
+						      <option value="M">Masculin</option>
+						      <option value="F">Féminin</option>
+						    </select>
+					    	<small id="sexHelp" class="form-text text-muted">Inserez le sexe de l'etudiant</small>
+					    </div>
+					    
+					   
+						  
+					   <button type="submit" class="btn btn-primary">Submit</button>
+						  
+					</form>
+
+				</div>
+				
+			</div>
+	
+		</div>
+		</div>
+		
+		<div th:replace="fragments/fragments.html :: scripts"></div>
+		
+	</body>
+</html>
