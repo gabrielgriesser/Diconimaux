@@ -13,14 +13,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ch.hearc.spring.thymeleaf.data.AnimauxDAO;
+import ch.hearc.spring.thymeleaf.data.AnimalsDAO;
+import ch.hearc.spring.thymeleaf.data.ClassificationsDAO;
+import ch.hearc.spring.thymeleaf.data.FeedsDAO;
+import ch.hearc.spring.thymeleaf.data.LocationsDAO;
 import ch.hearc.spring.thymeleaf.model.Animal;
 
 @Controller
 public class AccueilController {
 
 		@Autowired
-		AnimauxDAO dao;
+		AnimalsDAO animalsDao;
+		ClassificationsDAO classificationsDao;
+		FeedsDAO feedsDao;
+		LocationsDAO locationsDao;
 		
 		@Value("${accueil.message:test}")
 		private String message;
@@ -56,13 +62,13 @@ public class AccueilController {
 			model.put("page", "Concepts de bases");
 			
 			
-			model.put("animals", dao.getAllAnimals());
+			model.put("animals", animalsDao.getAllAnimals());
 			return "animals";
 		}
 		
 		@GetMapping("/form")
 		public String form(Map<String, Object> model) {
-			model.put("etudiant", new Animal());
+			model.put("animal", new Animal());
 			model.put("page", "Formulaire");
 			return "formulaire";
 		}
@@ -71,7 +77,7 @@ public class AccueilController {
 		public String saveAnimal(@Valid @ModelAttribute Animal animal, BindingResult errors, Model model) {
 					
 			if (!errors.hasErrors()) {
-	            dao.save(animal);
+	            animalsDao.save(animal);
 	            
 	            
 	        }

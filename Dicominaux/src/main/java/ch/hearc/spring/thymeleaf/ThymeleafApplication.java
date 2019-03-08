@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import ch.hearc.spring.thymeleaf.data.AnimauxDAO;
+import ch.hearc.spring.thymeleaf.data.AnimalsDAO;
 
 @SpringBootApplication
 public class ThymeleafApplication {
@@ -14,7 +14,7 @@ public class ThymeleafApplication {
 	}
 	
 	@Bean
-	public AnimauxDAO etudiantsDAO () {
-		return new AnimauxDAO();
+	public AnimalsDAO etudiantsDAO () {
+		return new AnimalsDAO();
 	}
 }
