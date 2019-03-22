@@ -16,22 +16,32 @@ public class Alimentation {
     private Integer id;
     
     @Column
-	private String alimentation;
+	private String name;
 	
-	public Alimentation(String alimentation) 
+    public Alimentation()
+    {
+    	
+    }
+    
+	public Alimentation(String nameAlimentation) 
 	{
 		super();
-		this.alimentation = alimentation;
+		this.name = nameAlimentation;
+	}
+    
+    public void setId(Integer id)
+	{
+		this.id = id;
 	}
 
-	public String getAlimentation() 
+	public String getName() 
 	{
-		return this.alimentation;
+		return this.name;
 	}
 	
-	public void setAlimentation(String alimentation)
+	public void setName(String name)
 	{
-		this.alimentation = alimentation;
+		this.name = name;
 	}
 	
 }

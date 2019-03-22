@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert new alimentation</title>
+</head>
+<body>
+
+	<h1>Form</h1>
+    <form action="#" th:action="@{/insertAlimentation}" th:object="${alimentation}" method="post">
+    	<p>Alimentation name : <input type="text" th:field="*{name}" /></p>        
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+    
+</body>
+</html>

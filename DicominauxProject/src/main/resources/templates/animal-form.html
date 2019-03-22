@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert new animal</title>
+</head>
+<body>
+
+	<h1>Form</h1>
+    <form action="#" th:action="@{/insertAnimal}" th:object="${animal}" method="post">
+    	<p>Name : <input type="text" th:field="*{name}" /></p>
+        <p>Description : <input type="text" th:field="*{description}" /></p>
+        <p>Alimentation : <input type="text" th:field="*{alimentation}" /></p>
+        <p>Location : <input type="text" th:field="*{location}" /></p>
+        <p>Classification : <input type="text" th:field="*{classification}" /></p>
+        <p>Height : <input type="number" th:field="*{height}" /></p>
+        <p>Weight : <input type="number" th:field="*{weight}" /></p>
+        
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+    
+</body>
+</html>

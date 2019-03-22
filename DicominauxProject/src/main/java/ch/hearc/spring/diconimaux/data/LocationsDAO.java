@@ -16,9 +16,9 @@ public class LocationsDAO {
 
 	static 
 	{
-		locations.put(1, new Location("Inde"));
-		locations.put(2, new Location("Australie"));
-		locations.put(3, new Location("Afrique"));
+		//locations.put(1, new Location("Inde"));
+		//locations.put(2, new Location("Australie"));
+		//locations.put(3, new Location("Afrique"));
 	}
 
 	public List<Location> getAllLocations() {

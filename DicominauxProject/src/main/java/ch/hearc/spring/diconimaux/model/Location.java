@@ -16,22 +16,33 @@ public class Location {
     private Integer id;
 	
 	@Column
-	private String location;
+	private String name;
 	
-	public Location(String location)
+	
+	public Location()
+	{
+		
+	}
+	
+	public Location(String name)
 	{
 		super();
-		this.location = location;
-	}
-
-	public String getLocation() 
-	{
-		return this.location;
+		this.name = name;
 	}
 	
-	public void setLocation(String location)
+	public void setId(Integer id)
 	{
-		this.location = location;
+		this.id = id;
+	}
+
+	public String getName() 
+	{
+		return this.name;
+	}
+	
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 	
 }

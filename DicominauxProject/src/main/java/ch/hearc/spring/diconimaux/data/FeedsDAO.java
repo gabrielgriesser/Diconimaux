@@ -17,8 +17,8 @@ public class FeedsDAO {
 	static 
 	{
 			
-		feeds.put(1, new Alimentation("Carnivore"));
-		feeds.put(2, new Alimentation("Herbivore"));
+		//feeds.put(1, new Alimentation("Carnivore"));
+		//feeds.put(2, new Alimentation("Herbivore"));
 		
 	}
 

@@ -49,9 +49,9 @@ public class Animal
 		this.description = description;
 		this.height = height;
 		this.weight = weight;
-		this.alimentation = alimentation.getAlimentation();
-		this.location = location.getLocation();
-		this.classification = classification.getClassification();
+		this.alimentation = alimentation.getName();
+		this.location = location.getName();
+		this.classification = classification.getName();
 
 		//this.setLocation(location);
 		//this.setFeed(feed);
@@ -87,16 +87,16 @@ public class Animal
 		return location;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location.getLocation();
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getClassification() {
 		return classification;
 	}
 
-	public void setClassification(Classification classification) {
-		this.classification = classification.getClassification();
+	public void setClassification(String classification) {
+		this.classification = classification;
 	}
 
 	public Integer getHeight() {

@@ -16,22 +16,32 @@ public class Classification
     private Integer id;
 	
 	@Column
-	private String classification;
+	private String name;
 	
-	public Classification(String classification) 
+	public Classification()
+	{
+		
+	}
+	
+	public Classification(String nameClassification) 
 	{
 		super();
-		this.classification = classification;
+		this.name = nameClassification;
 	}
 
-	public String getClassification() 
+	public void setId(Integer id)
 	{
-		return this.classification;
+		this.id = id;
 	}
 	
-	public void setClassification(String classification)
+	public String getName() 
 	{
-		this.classification = classification;
+		return this.name;
+	}
+	
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 	
 	

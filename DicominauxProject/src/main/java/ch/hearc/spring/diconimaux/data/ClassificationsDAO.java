@@ -17,8 +17,8 @@ public class ClassificationsDAO
 
 	static 
 	{				
-		classifications.put(1, new Classification("Mamifère"));
-		classifications.put(2, new Classification("Reptile"));	
+		//classifications.put(1, new Classification("Mamifère"));
+		//classifications.put(2, new Classification("Reptile"));	
 	}
 
 	public List<Classification> getAllClassifications() {
