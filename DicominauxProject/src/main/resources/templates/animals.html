@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head th:insert="fragments/fragments.html :: header"/>
+	
+	<body>
+		
+		<div th:replace="fragments/fragments.html :: navigation"></div>
+		
+		<div class="container">
+	
+			<div class="starter-template">
+				<h1>Concepts de bases</h1>
+				
+				
+				<div class="card">
+				  <div class="card-header">
+				    Exemple th:each
+				  </div>
+				  <div class="card-body">
+				    <table class="table">
+				    <thead>
+					    <tr>
+					      <th scope="col">Name</th>
+					    </tr>
+					  </thead>
+				    <tbody>
+					    <tr th:each="animal: ${animals}">
+					        <td th:text="${animal.name}" />
+					    </tr>
+					</tbody>
+					</table>
+				  </div>
+				</div>
+				
+				<div class="card">
+				  <div class="card-header">
+				    Exemple th:if et th:unless
+				  </div>
+				  <div class="card-body">
+				    <table class="table">
+				    <thead>
+					    <tr>
+					      <th scope="col">Name</th>
+					      <th scope="col">Description</th>
+					      <th scope="col">Height</th>
+					      <th scope="col">Weight</th>
+   					      <th scope="col">Location</th>
+					      <th scope="col">Feed</th>
+					      <th scope="col">Classification</th>
+					      
+					    </tr>
+					  </thead>
+				    <tbody>
+					    <tr th:each="animal: ${animals}">
+					        <td th:text="${animal.name}" />
+					        <td th:text="${animal.description}" />
+					        <td th:text="${animal.height}" />
+   					        <td th:text="${animal.weight}" />
+					        <td th:text="${animal.location}" />		        
+					        <td th:text="${animal.feed}" />
+					        <td th:text="${animal.classification}" />
+					         
+					    </tr>
+					</tbody>
+					</table>
+				  </div>
+				</div>
+					
+				
+			</div>
+	
+		</div>
+		
+		<!-- <div th:replace="fragments/fragments.html :: scripts"></div> -->
+		
+	</body>
+</html>
