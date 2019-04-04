@@ -23,6 +23,7 @@ public class Animal
 	
 	@Column
 	private String alimentation;
+	//private Alimentation alimentation;
 	
 	//TODO
 	//CHANGER LOCATION ET CLASSIFICATION --> ID (?)
@@ -79,8 +80,8 @@ public class Animal
 		return alimentation;
 	}
 
-	public void setAlimentation(String alimentation) {
-		this.alimentation = alimentation;
+	public void setAlimentation(Alimentation alimentation) {
+		this.alimentation = alimentation.getName();
 	}
 
 	public String getLocation() {

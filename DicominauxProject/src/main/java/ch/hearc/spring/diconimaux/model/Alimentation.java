@@ -34,6 +34,11 @@ public class Alimentation {
 		this.id = id;
 	}
 
+    public Integer getId()
+    {
+    	return this.id;
+    }
+    
 	public String getName() 
 	{
 		return this.name;

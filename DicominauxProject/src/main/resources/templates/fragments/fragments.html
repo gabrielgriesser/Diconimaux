@@ -1,6 +1,6 @@
 <!--  *************** fragment du header *************** -->
 <head th:fragment="header">
-<title>Spring Boot Thymeleaf</title>
+<title>Diconimauxxx</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link rel="stylesheet" type="text/css"
@@ -8,7 +8,15 @@
 
 <link rel="stylesheet" th:href="@{/css/accueil.css}"
 	href="../../css/accueil.css" />
+	
+
 </head>
+
+<div th:fragment="login" class="login">
+		<h2>Login</h2>
+		 <p>Click <a th:href="@{/login}">here</a> to log on.</p>
+		 <p>Click <a th:href="@{/login}">here</a> to sign in.</p>			
+</div>
 
 <!--  *************** fragment de navigation *************** -->
 <div th:fragment="navigation">

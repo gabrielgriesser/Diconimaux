@@ -17,7 +17,6 @@ public class AlimentationController
 	@Autowired
 	AlimentationRepository alimentationRepository;
 	
-	
 	@GetMapping("/formAlimentation")
 	public String alimentationForm(Model model)
 	{
@@ -27,6 +26,8 @@ public class AlimentationController
 		
 		return "alimentation-form";
 	}
+	
+
 	
 	@PostMapping("/insertAlimentation")
 	public String insertAlimentation(@ModelAttribute Alimentation alimentation, Model model)

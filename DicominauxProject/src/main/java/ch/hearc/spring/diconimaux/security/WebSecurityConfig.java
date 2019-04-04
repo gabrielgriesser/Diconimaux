@@ -14,13 +14,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http        
             .authorizeRequests()
-                .antMatchers("/", "/accueil").permitAll()
+                .antMatchers("/", "/home").permitAll()
                 .antMatchers("/animals").permitAll()
                 //.anyRequest().authenticated()
                 //.anyRequest().hasRole("USER")
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasRole("USER")
-                .antMatchers("/hello").hasAnyRole("USER", "ADMIN")
                 .and()
             .formLogin()
                 .loginPage("/login")
