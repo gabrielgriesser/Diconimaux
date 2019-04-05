@@ -1,42 +1,31 @@
 package ch.hearc.spring.diconimaux.model;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="animal")
+@Entity(name="animal")
 public class Animal 
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column
-	private Integer id;
+	private long id;
 	
-	@Column
 	private String name;
 	
-	@Column
 	private String description;
 	
-	@Column
 	private String alimentation;
 	//private Alimentation alimentation;
 	
-	//TODO
-	//CHANGER LOCATION ET CLASSIFICATION --> ID (?)
-	@Column
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "location_id")
 	private String location;
 	
-	@Column
 	private String classification;
 	
-	@Column
 	private Integer height;
 	
-	@Column 
 	private Integer weight;
 	
 	
@@ -54,13 +43,10 @@ public class Animal
 		this.location = location.getName();
 		this.classification = classification.getName();
 
-		//this.setLocation(location);
-		//this.setFeed(feed);
-		//this.setClassification(classification);
 	}
 
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -87,6 +73,7 @@ public class Animal
 	public String getLocation() {
 		return location;
 	}
+	
 
 	public void setLocation(String location) {
 		this.location = location;

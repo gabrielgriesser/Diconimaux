@@ -1,5 +1,4 @@
 package ch.hearc.spring.diconimaux.model;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,10 +11,8 @@ public class Classification
 {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column
     private Integer id;
 	
-	@Column
 	private String name;
 	
 	public Classification()

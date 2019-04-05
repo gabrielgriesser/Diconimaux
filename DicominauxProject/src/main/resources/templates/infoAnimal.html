@@ -8,7 +8,7 @@
 				
 		<div class="jumbotron">
 			  
-			<h1 class="display-4">Here is all animals</h1>
+			<h1 class="display-4">Here is the page of "${animal.id}"</h1>
 			 
 			<div class="container">
 				
@@ -26,9 +26,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="animal: ${animals}">
+					<tr>
+						<tr th:each="animal: ${animals}">
 						<td th:text="${animal.id}" />
-						<td th:text="${animal.name}" />			
+						<td th:text="${animal.name}" />
 						<td th:text="${animal.description}" />
 						<td th:text="${animal.alimentation}" />
 						<td th:text="${animal.location}" />
@@ -36,51 +37,53 @@
 						<td th:text="${animal.height} + m" />
 						<td th:text="${animal.weight} + kg" />
 					</tr>
+					
 				</tbody>
 				</table>
 				
+
 				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Location</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="location: ${locations}">
-							<td th:text="${location.name}" />
-						</tr>
-					</tbody>
-				</table>
-				
+						<thead>
+							<tr>
+								<th scope="col">Location Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="location: ${locations}">
+								<td th:text="${location.name}" />
+							</tr>
+						</tbody>
+					</table>
+					
 				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Alimentation</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="alimentation: ${alimentations}">
-							<td th:text="${alimentation.name}" />
-						</tr>
-					</tbody>
-				</table>
-				
+						<thead>
+							<tr>
+								<th scope="col">Alimentation Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="alimentation: ${alimentations}">
+								<td th:text="${alimentation.name}" />
+							</tr>
+						</tbody>
+					</table>
+					
 				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Classification</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="classification: ${classifications}">
-							<td th:text="${classification.name}" />
-						</tr>
-					</tbody>
-				</table>
+						<thead>
+							<tr>
+								<th scope="col">Classification Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="classification: ${classifications}">
+								<td th:text="${classification.name}" />
+							</tr>
+						</tbody>
+					</table>
 			
 			</div>
 				
-			<p>Click <a th:href="@{/formAnimal}">here</a> to add an animal.</p>
+			<p>Click <a class="btn btn-info" th:href="@{/}">here</a> to get home.</p>
 			
 		</div>
 		

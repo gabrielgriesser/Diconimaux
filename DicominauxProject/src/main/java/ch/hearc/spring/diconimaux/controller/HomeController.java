@@ -16,7 +16,7 @@ import ch.hearc.spring.diconimaux.jparepository.AlimentationRepository;
 import ch.hearc.spring.diconimaux.jparepository.AnimalRepository;
 import ch.hearc.spring.diconimaux.jparepository.ClassificationRepository;
 import ch.hearc.spring.diconimaux.jparepository.LocationRepository;
-import ch.hearc.spring.diconimaux.model.Animal;
+import ch.hearc.spring.diconimaux.model.Location;
 
 
 @Controller
@@ -34,12 +34,19 @@ public class HomeController {
 	
 		
 		@GetMapping("/")
-		public String accueil(Map<String, Object> model) {
+		public String home(Map<String, Object> model) 
+		{
+
 			model.put("page", "Accueil");
+			
 			model.put("animals", animalRepository.findAll());
-			model.put("alimentations", alimentationRepository.findAll());
+			
 			model.put("locations", locationRepository.findAll());
+
 			model.put("classifications", classificationRepository.findAll());
+			
+			model.put("alimentations", alimentationRepository.findAll());
+
 			
 			return "home";
 		}
@@ -56,27 +63,27 @@ public class HomeController {
 			return "user";
 		}
 		
-		@Autowired
+		//@Autowired
 		@GetMapping("/animals")
 		public String getAllAnimal(Map<String, Object> model)
 		{
 			model.put("animals", animalRepository.findAll());
 			model.put("alimentations", alimentationRepository.findAll());
+			//model.put("alimentations", alimentationRepository.findByAnimalID())
 			model.put("locations", locationRepository.findAll());
 			model.put("classifications", classificationRepository.findAll());
+
 			
 			return "listeAnimal";
-		}	
+		}
 		
-		@PostMapping("/animal")
-		public String saveAnimal(@Valid @ModelAttribute Animal animal, BindingResult errors, Model model) {
+		@PostMapping("/search")
+		public String searchAnimal(@Valid @ModelAttribute Location location, BindingResult errors, Model model)
+		{
 					
-			if (!errors.hasErrors()) {
-	            animalRepository.save(animal);
-	            
-	            
-	        }
-	        return ((errors.hasErrors()) ? "animal" : "redirect:basic");
+			//Search animal by ... (create query in animal repository)
+				
+			return "home";
 		}
 }
 

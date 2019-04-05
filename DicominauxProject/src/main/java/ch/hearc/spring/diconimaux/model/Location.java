@@ -1,22 +1,25 @@
 package ch.hearc.spring.diconimaux.model;
-import javax.persistence.Column;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
-@Entity
-@Table(name="location")
+@Entity(name="location")
 public class Location {
     
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column
-    private Integer id;
+    private Long id;
 	
-	@Column
 	private String name;
+	
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "location", cascade = CascadeType.ALL)
+	//private List<Animal> animals;
 	
 	
 	public Location()
@@ -30,12 +33,12 @@ public class Location {
 		this.name = name;
 	}
 	
-	public void setId(Integer id)
+	public void setId(Long id)
 	{
 		this.id = id;
 	}
 	
-	public Integer getId()
+	public Long getId()
 	{
 		return this.id;
 	}

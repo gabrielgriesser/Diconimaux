@@ -32,26 +32,43 @@
             </div>
             <form class="form-inline mb-sm-2 float-right">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <select class="form-control mr-sm-2">
-                    <option>All categories</option>
-                    <option>Mammal</option>
-                </select>
-                <select class="form-control mr-sm-2">
-                    <option>All foods</option>
-                    <option>Carnivor</option>
-                </select>
+                
+	            <select class="form-control mr-sm-2" name="location">
+		        	<option value="">Select a location</option>
+		        	<option th:each="location : ${locations}"
+		        	th:value="${location.id}"
+		        	th:text="${location.name}"></option>
+		        </select>
+		        
+                <select class="form-control mr-sm-2" name="alimentation">
+		        	<option value="">Select an alimentation</option>
+		        	<option th:each="alimentation : ${alimentations}"
+		        	th:value="${alimentation.id}"
+		        	th:utext="${alimentation.name}"></option>
+		        </select>
+		        
+		        <select class="form-control mr-sm-2" name="classification">
+		        	<option value="">Select a classification</option>
+		        	<option th:each="classification : ${classifications}"
+		        	th:value="${classification.id}"
+		        	th:text="${classification.name}"></option>
+		        </select>
+		        
                 <button class="btn btn-outline-success" type="submit">Search</button>
                 
             </form>
+            
             <table class="table table-hover list">
                 <thead class="head">
                     <tr>
                         <td scope="col"></td>
-                        <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Food</th>
-                        <th scope="col"></th>
+						<th scope="col">Description</th>
+						<th scope="col">Alimentation</th>
+						<th scope="col">Location</th>
+						<th scope="col">Classification</th>
+						<th scope="col">Height</th>
+						<th scope="col">Weight</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,15 +77,32 @@
 						<td scope="col"><img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="img-fluid"></td>
                         <th scope="row" th:text=${animal.id}/>
 						<td th:text="${animal.name}" />
+						<td th:text="${animal.description}" />
 						<td th:text="${animal.alimentation}" />
+						<td th:text="${animal.location}" />
 						<td th:text="${animal.classification}" />
-						<td><button type="button" class="btn btn-info">Info</button></td>
+						<td th:text="${animal.height} + m" />
+						<td th:text="${animal.weight} + kg" />
+						
+						<td>
+							<form action="#" th:action="@{'/animal/{id}'(id=${animal.id})}">
+	          					<input type="hidden" value="info" />			
+								<button class="btn btn-info" type="submit" id="submitButton">Info</button>
+	          				</form>	
+          				</td>
+          				<td>
+							<form action="#" th:action="@{'/delete/{id}'(id=${animal.id})}" th:method="delete">
+	          					<input type="hidden" name="_method" value="delete" />			
+								<button class="btn btn-danger" type="submit" id="submitButton" onclick="return confirm('Are you sure?')">Delete</button>
+	          				</form>	
+          				</td>						
 					</tr>
 				</tbody>
-                
+				
+			</table>
+			               
             <nav aria-label="Page navigation">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#"><<</a></li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -76,6 +110,7 @@
                     </ul>
             </nav>
         </div>
-        <div th:replace="fragments/fragments.html :: scripts"></div>
+        <div th:replace="fragments/fragments.html :: scripts">
+        </div>
     </body>
 </html>
