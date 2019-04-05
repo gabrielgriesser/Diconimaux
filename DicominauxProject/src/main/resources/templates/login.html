@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Spring Security Example - Login Page </title>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    </head>
+<html xmlns:th="http://www.thymeleaf.org">
+    <div th:replace="fragments/fragments.html :: header"></div>
     <body>
-        <div th:if="${param.error}">
-            Invalid username and password.
+        <div th:replace="fragments/fragments.html :: nav_header"></div>
+        <div class="container mt-sm-3">
+            <h1>Login</h1>
+            <div th:if="${param.error}">
+	            Invalid username and password.
+	        </div>
+	        <div th:if="${param.logout}">
+	            You have been logged out.
+	        </div>
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="inputUsername">Username</label>
+                    <input type="text" class="form-control" id="inputUsername" placeholder="Enter username">
+                    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword1">Password</label>
+                    <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+              </form>
+            
         </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name modified : <input type="text" name="username"/> </label></div>
-            <div><label> Password modified: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
+        <div th:replace="fragments/fragments.html :: scripts"></div>
     </body>
 </html>

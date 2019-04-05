@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragments.html :: login"/>
+</head>
+<body>
+
+	<div class="container">
+				
+		<div class="jumbotron">
+			  
+			<h1 class="display-4">Here is all animals</h1>
+			 
+			<div class="container">
+				
+				<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Name</th>
+						<th scope="col">Description</th>
+						<th scope="col">Alimentation</th>
+						<th scope="col">Location</th>
+						<th scope="col">Classification</th>
+						<th scope="col">Height</th>
+						<th scope="col">Weight</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="animal: ${animals}">
+						<td th:text="${animal.id}" />
+						<td th:text="${animal.description}" />
+						<td th:text="${animal.alimentation}" />
+						<td th:text="${animal.location}" />
+						<td th:text="${animal.classification}" />
+						<td th:text="${animal.height} + m" />
+						<td th:text="${animal.weight} + kg" />
+					</tr>
+				</tbody>
+				</table>
+				
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Location</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="location: ${locations}">
+							<td th:text="${location.name}" />
+						</tr>
+					</tbody>
+				</table>
+				
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Alimentation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="alimentation: ${alimentations}">
+							<td th:text="${alimentation.name}" />
+						</tr>
+					</tbody>
+				</table>
+				
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Classification</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="classification: ${classifications}">
+							<td th:text="${classification.name}" />
+						</tr>
+					</tbody>
+				</table>
+			
+			</div>
+				
+			<p>Click <a th:href="@{/formAnimal}">here</a> to add an animal.</p>
+			
+		</div>
+		
+	</div>
+
+</body>
+</html>

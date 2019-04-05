@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:insert="fragments/fragments.html :: login"/>
+
+	<body>
+
+		<!-- <div th:replace="fragments/fragments.html :: navigation"></div> -->
+	
+		<div class="container">
+			
+			<div class="jumbotron">
+			  
+			  <h1 class="display-4">Dicominaux</h1>
+			 
+				<h2>Welcome!</h2>
+				
+				<div class="container">
+				
+					<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Description</th>
+							<th scope="col">Alimentation</th>
+							<th scope="col">Location</th>
+							<th scope="col">Classification</th>
+							<th scope="col">Height</th>
+							<th scope="col">Weight</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="animal, iterStat: ${animals}" th:if="${iterStat.index <= 2}">
+							<td th:text="${animal.name}" />
+							<td th:text="${animal.description}" />
+							<td th:text="${animal.alimentation}" />
+							<td th:text="${animal.location}" />
+							<td th:text="${animal.classification}" />
+							<td th:text="${animal.height} + m" />
+							<td th:text="${animal.weight} + kg" />
+						</tr>
+					</tbody>
+					</table>
+					
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Location Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="location, iterStat: ${locations}" th:if="${iterStat.index <= 2}">
+								<td th:text="${location.name}" />
+							</tr>
+						</tbody>
+					</table>
+					
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Alimentation Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="alimentation, iterStat: ${alimentations}" th:if="${iterStat.index <= 2}">
+								<td th:text="${alimentation.name}" />
+							</tr>
+						</tbody>
+					</table>
+					
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Classification Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="classification, iterStat: ${classifications}" th:if="${iterStat.index <= 2}">
+								<td th:text="${classification.name}" />
+							</tr>
+						</tbody>
+					</table>
+				
+				</div>
+				
+        	<p>Click <a th:href="@{/animals}">here</a> to see ALL animals.</p>
+			
+			</div>
+		
+		</div>
+		
+		<div th:replace="fragments/fragments.html :: scripts"></div>
+		
+	</body>
+</html>

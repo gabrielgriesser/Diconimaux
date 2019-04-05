@@ -1,95 +1,81 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head th:insert="fragments/fragments.html :: login"/>
+    <div th:replace="fragments/fragments.html :: header"></div>
 
-	<body>
+    <body>
+        
+        <div th:replace="fragments/fragments.html :: nav_header"></div>
 
-		<!-- <div th:replace="fragments/fragments.html :: navigation"></div> -->
-	
-		<div class="container">
-			
-			<div class="jumbotron">
-			  
-			  <h1 class="display-4">Dicominaux</h1>
-			 
-				<h2>Welcome!</h2>
-				
-				<div class="container">
-				
-					<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Name</th>
-							<th scope="col">Description</th>
-							<th scope="col">Alimentation</th>
-							<th scope="col">Location</th>
-							<th scope="col">Classification</th>
-							<th scope="col">Height</th>
-							<th scope="col">Weight</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="animal, iterStat: ${animals}" th:if="${iterStat.index <= 2}">
-							<td th:text="${animal.name}" />
-							<td th:text="${animal.description}" />
-							<td th:text="${animal.alimentation}" />
-							<td th:text="${animal.location}" />
-							<td th:text="${animal.classification}" />
-							<td th:text="${animal.height} + m" />
-							<td th:text="${animal.weight} + kg" />
-						</tr>
-					</tbody>
-					</table>
+        <div class="container mt-sm-3">
+            <h1>Home</h1>
+            <div id="carouselImages" class="carousel slide mx-auto mb-sm-2 mt-sm-2" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <form class="form-inline mb-sm-2 float-right">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <select class="form-control mr-sm-2">
+                    <option>All categories</option>
+                    <option>Mammal</option>
+                </select>
+                <select class="form-control mr-sm-2">
+                    <option>All foods</option>
+                    <option>Carnivor</option>
+                </select>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                
+            </form>
+            <table class="table table-hover list">
+                <thead class="head">
+                    <tr>
+                        <td scope="col"></td>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Food</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+					<tr th:each="animal, iterStat: ${animals}" th:if="${iterStat.index <= 2}">
 					
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Location Name</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="location, iterStat: ${locations}" th:if="${iterStat.index <= 2}">
-								<td th:text="${location.name}" />
-							</tr>
-						</tbody>
-					</table>
-					
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Alimentation Name</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="alimentation, iterStat: ${alimentations}" th:if="${iterStat.index <= 2}">
-								<td th:text="${alimentation.name}" />
-							</tr>
-						</tbody>
-					</table>
-					
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Classification Name</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="classification, iterStat: ${classifications}" th:if="${iterStat.index <= 2}">
-								<td th:text="${classification.name}" />
-							</tr>
-						</tbody>
-					</table>
-				
-				</div>
-				
-        	<p>Click <a th:href="@{/animals}">here</a> to see ALL animals.</p>
-			
-			</div>
-		
-		</div>
-		
-		<div th:replace="fragments/fragments.html :: scripts"></div>
-		
-	</body>
+						<td scope="col"><img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="img-fluid"></td>
+                        <th scope="row" th:text=${animal.id}/>
+						<td th:text="${animal.name}" />
+						<td th:text="${animal.alimentation}" />
+						<td th:text="${animal.classification}" />
+						<td><button type="button" class="btn btn-info">Info</button></td>
+					</tr>
+				</tbody>
+                
+            <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#"><<</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">>></a></li>
+                    </ul>
+            </nav>
+        </div>
+        <div th:replace="fragments/fragments.html :: scripts"></div>
+    </body>
 </html>
