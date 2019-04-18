@@ -47,7 +47,7 @@ public class AnimalController
 		List<Classification> classificationList = classificationRepository.findAll();
 		model.addAttribute("classifications", classificationList);
 		
-		Iterable<Location> locationList = locationRepository.findAll();
+		List<Location> locationList = locationRepository.findAll();
 		model.addAttribute("locations", locationList);
 		
 		return "animal-form";
@@ -91,7 +91,9 @@ public class AnimalController
 	{
 		
 		animalRepository.findById(animal.getId()).ifPresent(a -> model.addAttribute("animals", a));
-				
+		
+
+		//model.addAttribute("locations", locationRepository.findByID(animal.getLocation().getId()));
 		
 		return "infoAnimal";
 	}

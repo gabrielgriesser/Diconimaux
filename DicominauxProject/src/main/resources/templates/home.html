@@ -30,10 +30,24 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-            <form class="form-inline mb-sm-2 float-right">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            
+             <form action='#' th:action="@{/search}" th:object="${animal}" method="post" class="form-inline mb-sm-2 float-right">
+                <p>Name: <input type="text" class="form-control mr-sm-2">
+                <button class="btn btn-outline-success" type="submit">Search</button>
                 
-	            <select class="form-control mr-sm-2" name="location">
+            </form>
+            
+            
+            
+            <!--<form action='#' th:action="@{/search}" th:object="${animal}" method="post" class="form-inline mb-sm-2 float-right">
+                <p>Name: <input type="text" th:field="*{name}" class="form-control mr-sm-2">
+                
+                <p>Location <input type="text" th:field="*{location}" class="form-control mr-sm-2">
+                <p>Height <input type="text" th:field="*{height}" class="form-control mr-sm-2">
+                <p>Weight <input type="text" th:field="*{weight}" class="form-control mr-sm-2">
+                
+                
+                <select class="form-control mr-sm-2" name="location">
 		        	<option value="">Select a location</option>
 		        	<option th:each="location : ${locations}"
 		        	th:value="${location.id}"
@@ -44,7 +58,7 @@
 		        	<option value="">Select an alimentation</option>
 		        	<option th:each="alimentation : ${alimentations}"
 		        	th:value="${alimentation.id}"
-		        	th:utext="${alimentation.name}"></option>
+		        	th:text="${alimentation.name}"></option>
 		        </select>
 		        
 		        <select class="form-control mr-sm-2" name="classification">
@@ -54,14 +68,21 @@
 		        	th:text="${classification.name}"></option>
 		        </select>
 		        
+		        
                 <button class="btn btn-outline-success" type="submit">Search</button>
                 
             </form>
+            -->
+            
+            
+            
+            
             
             <table class="table table-hover list">
                 <thead class="head">
                     <tr>
-                        <td scope="col"></td>
+                    	<th scope="col">IMG</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Name</th>
 						<th scope="col">Description</th>
 						<th scope="col">Alimentation</th>
@@ -74,13 +95,13 @@
                 <tbody>
 					<tr th:each="animal, iterStat: ${animals}" th:if="${iterStat.index <= 2}">
 					
-						<td scope="col"><img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="img-fluid"></td>
-                        <th scope="row" th:text=${animal.id}/>
+						<td><img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="img-fluid"></td>
+                        <td th:text=${animal.id}/>
 						<td th:text="${animal.name}" />
 						<td th:text="${animal.description}" />
-						<td th:text="${animal.alimentation}" />
-						<td th:text="${animal.location}" />
-						<td th:text="${animal.classification}" />
+						<td th:text="${animal.alimentation_name}" />
+						<td th:text="${animal.location_name}" />
+						<td th:text="${animal.classification_name}" />
 						<td th:text="${animal.height} + m" />
 						<td th:text="${animal.weight} + kg" />
 						

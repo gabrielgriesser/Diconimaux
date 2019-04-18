@@ -17,7 +17,7 @@
 	        	<option value="">Select an alimentation</option>
 	        	<option th:each="alimentation : ${alimentations}"
 	        	th:value="${alimentation.id}"
-	        	th:utext="${alimentation.name}"></option>
+	        	th:text="${alimentation.name}"></option>
 	        </select>
         </p>
         

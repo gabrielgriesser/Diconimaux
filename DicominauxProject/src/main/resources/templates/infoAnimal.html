@@ -7,8 +7,9 @@
 	<div class="container">
 				
 		<div class="jumbotron">
-			  
-			<h1 class="display-4">Here is the page of "${animal.id}"</h1>
+
+			
+			<h1 class="display-4" th:each="animal: ${animals}" th:text="${animal.name}"></h1>
 			 
 			<div class="container">
 				
@@ -31,9 +32,9 @@
 						<td th:text="${animal.id}" />
 						<td th:text="${animal.name}" />
 						<td th:text="${animal.description}" />
-						<td th:text="${animal.alimentation}" />
-						<td th:text="${animal.location}" />
-						<td th:text="${animal.classification}" />
+						<td th:text="${animal.alimentation_name}" />
+						<td th:text="${animal.location_name}" />
+						<td th:text="${animal.classification_name}" />
 						<td th:text="${animal.height} + m" />
 						<td th:text="${animal.weight} + kg" />
 					</tr>

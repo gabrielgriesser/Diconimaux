@@ -1,7 +1,7 @@
 package ch.hearc.spring.diconimaux.model;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,12 +14,14 @@ public class Location {
     
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
     private Long id;
 	
+	@Column(name="name")
 	private String name;
 	
-	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "location", cascade = CascadeType.ALL)
-	//private List<Animal> animals;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
+	private List<Animal> animals;
 	
 	
 	public Location()

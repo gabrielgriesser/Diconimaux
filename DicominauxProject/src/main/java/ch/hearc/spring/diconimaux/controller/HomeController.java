@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +15,7 @@ import ch.hearc.spring.diconimaux.jparepository.AlimentationRepository;
 import ch.hearc.spring.diconimaux.jparepository.AnimalRepository;
 import ch.hearc.spring.diconimaux.jparepository.ClassificationRepository;
 import ch.hearc.spring.diconimaux.jparepository.LocationRepository;
-import ch.hearc.spring.diconimaux.model.Location;
+import ch.hearc.spring.diconimaux.model.Animal;
 
 
 @Controller
@@ -63,12 +62,13 @@ public class HomeController {
 			return "user";
 		}
 		
-		//@Autowired
 		@GetMapping("/animals")
 		public String getAllAnimal(Map<String, Object> model)
 		{
 			model.put("animals", animalRepository.findAll());
 			model.put("alimentations", alimentationRepository.findAll());
+			
+			//TODO HERE Query pour choper les alimentations de l'animal
 			//model.put("alimentations", alimentationRepository.findByAnimalID())
 			model.put("locations", locationRepository.findAll());
 			model.put("classifications", classificationRepository.findAll());
@@ -77,13 +77,12 @@ public class HomeController {
 			return "listeAnimal";
 		}
 		
+		
 		@PostMapping("/search")
-		public String searchAnimal(@Valid @ModelAttribute Location location, BindingResult errors, Model model)
+		public String searchAnimal(@Valid @ModelAttribute String name, BindingResult errors, Map<String, Object> model)
 		{
-					
-			//Search animal by ... (create query in animal repository)
-				
-			return "home";
+			model.put("animals", animalRepository.findByName("Tigre"));
+			return "listeAnimal";
 		}
 }
 
