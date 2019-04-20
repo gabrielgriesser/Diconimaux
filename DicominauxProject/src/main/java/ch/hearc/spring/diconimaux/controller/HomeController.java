@@ -5,10 +5,12 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ch.hearc.spring.diconimaux.jparepository.AlimentationRepository;
@@ -20,7 +22,7 @@ import ch.hearc.spring.diconimaux.model.Animal;
 
 @Controller
 public class HomeController {
-
+		private int nbAnimalPerPage = 1;
 
 		@Autowired
 		AnimalRepository animalRepository;
@@ -38,8 +40,28 @@ public class HomeController {
 
 			model.put("page", "Accueil");
 			
-			model.put("animals", animalRepository.findAll());
+			model.put("animals", animalRepository.findAll(new PageRequest(0,nbAnimalPerPage)));
+			//model.put("animals", animalRepository.findAll(new PageRequest(0,1)));
+			model.put("locations", locationRepository.findAll());
+
+			model.put("classifications", classificationRepository.findAll());
 			
+			model.put("alimentations", alimentationRepository.findAll());
+
+			
+			return "home";
+		}
+		
+		@GetMapping("/page/{page}")
+		public String homePageable(Map<String, Object> model, @PathVariable int page)
+		{
+
+			model.put("page", "Accueil");
+			
+			
+			
+			model.put("animals", animalRepository.findAll(new PageRequest(page - 1,nbAnimalPerPage)));
+			//model.put("animals", animalRepository.findAll(new PageRequest(0,1)));
 			model.put("locations", locationRepository.findAll());
 
 			model.put("classifications", classificationRepository.findAll());

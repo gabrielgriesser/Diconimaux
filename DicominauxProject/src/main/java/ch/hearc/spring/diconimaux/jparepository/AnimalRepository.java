@@ -1,5 +1,6 @@
 package ch.hearc.spring.diconimaux.jparepository;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,7 +21,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Long>
 			+ " INNER JOIN alimentation ON animal.alimentation_name=alimentation.name"
 			+ " INNER JOIN location ON animal.location_name=location.name"
 			+ " INNER JOIN classification ON animal.classification_name=classification.name", nativeQuery=true)
-	List<Animal> getAllAnimalsWithoutID();
+	List<Animal> getAllAnimalsWithoutID(Pageable pageable);
 	
 	
 	List<Animal> findByLocation(Location loc);
