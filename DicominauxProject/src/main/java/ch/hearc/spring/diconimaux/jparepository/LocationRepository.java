@@ -11,6 +11,6 @@ import ch.hearc.spring.diconimaux.model.Location;
 public interface LocationRepository extends JpaRepository<Location, Long> 
 {
 	@Query("SELECT loc FROM location loc WHERE loc.id = :location_id")
-	List<Location> findByID(@Param("location_id") Long location_id);
+	List<Location> findByAnimalID(@Param("location_id") Long location_id);
 	
 }

@@ -20,8 +20,12 @@
 	        	th:text="${alimentation.name}"></option>
 	        </select>
         </p>
+         
+        <!-- HERE !!! L'ALIMENTATION MARCHE MAIS PAS LES 2 AUTRES CHAMPS, POURQUOI ...? 
         
-        <p>
+        EDIT CA MARCHE !!! -->
+        
+         <p>
         	<select name="location" th:field="*{location}">
 	        	<option value="">Select a location</option>
 	        	<option th:each="location : ${locations}"
@@ -30,7 +34,7 @@
 	        </select>
 	    </p>
 	        
-        
+	       
         <p>
 	        <select name="classification" th:field="*{classification}">
 	        	<option value="">Select a classification</option>
@@ -39,6 +43,7 @@
 	        	th:text="${classification.name}"></option>
 	        </select>
 	    </p>
+	    
                
         <p>Height : <input type="number" th:field="*{height}" /></p>
         

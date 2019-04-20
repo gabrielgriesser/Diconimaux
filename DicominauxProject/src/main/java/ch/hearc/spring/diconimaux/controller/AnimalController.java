@@ -92,6 +92,9 @@ public class AnimalController
 		
 		animalRepository.findById(animal.getId()).ifPresent(a -> model.addAttribute("animals", a));
 		
+		//model.addAttribute(locationRepository.findByAnimalID(animal.getLocation()));
+		
+		//System.out.println(locationRepository.findByAnimalID(animal.getLocation()).toString());
 
 		//model.addAttribute("locations", locationRepository.findByID(animal.getLocation().getId()));
 		

@@ -22,17 +22,16 @@ public class Location {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
 	private List<Animal> animals;
-	
-	
+		
 	public Location()
 	{
 		
 	}
 	
-	public Location(String name)
+	public Location(String nameLocation)
 	{
 		super();
-		this.name = name;
+		this.name = nameLocation;
 	}
 	
 	public void setId(Long id)

@@ -82,28 +82,20 @@
                 <thead class="head">
                     <tr>
                     	<th scope="col">IMG</th>
-                        <th scope="col">ID</th>
                         <th scope="col">Name</th>
-						<th scope="col">Description</th>
 						<th scope="col">Alimentation</th>
 						<th scope="col">Location</th>
 						<th scope="col">Classification</th>
-						<th scope="col">Height</th>
-						<th scope="col">Weight</th>
                     </tr>
                 </thead>
                 <tbody>
 					<tr th:each="animal, iterStat: ${animals}" th:if="${iterStat.index <= 2}">
 					
 						<td><img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="img-fluid"></td>
-                        <td th:text=${animal.id}/>
 						<td th:text="${animal.name}" />
-						<td th:text="${animal.description}" />
-						<td th:text="${animal.alimentation_name}" />
-						<td th:text="${animal.location_name}" />
-						<td th:text="${animal.classification_name}" />
-						<td th:text="${animal.height} + m" />
-						<td th:text="${animal.weight} + kg" />
+						<td th:text="${animal.alimentation}" />
+						<td th:text="${animal.location}" />
+						<td th:text="${animal.classification}" />
 						
 						<td>
 							<form action="#" th:action="@{'/animal/{id}'(id=${animal.id})}">
