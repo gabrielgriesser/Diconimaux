@@ -31,40 +31,55 @@
                 </a>
             </div>
             
-             <form action='#' th:action="@{/search}" th:object="${animal}" method="post" class="form-inline mb-sm-2 float-right">
-                <p>Name: <input type="text" class="form-control mr-sm-2">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+             <form action='#' th:action="@{/searchByName}" method="get" th:object="${animal}" class="form-inline mb-sm-2 float-right">
+                <p>Name: <input type="text" name="animalName" class="form-control mr-sm-2">
+                </p>
+                <button class="btn btn-outline-success" type="submit">Search by name</button>
+             </form>
+               
+             <br>
+             
+             <form action='#' th:action="@{/searchByLocation}" method="get" th:object="${location}" class="form-inline mb-sm-2 float-right">
+                <div class="form-group">
                 
+                <select class="form-control mr-sm-2" name="locationName">
+		        	<option value="">Select a location</option>
+		        	<option th:each="location : ${locations}"
+		        	th:value="${location.name}"
+		        	th:text="${location.name}"></option>
+		        </select>
+     
+                <button class="btn btn-outline-success" type="submit">Search by location</button>
+                </div>
             </form>
             
             
             
-            <!--<form action='#' th:action="@{/search}" th:object="${animal}" method="post" class="form-inline mb-sm-2 float-right">
-                <p>Name: <input type="text" th:field="*{name}" class="form-control mr-sm-2">
+            
+            
+            <form action='#' th:action="@{/search}" th:object="${animal}" method="get" class="form-inline mb-sm-2 float-right">
                 
-                <p>Location <input type="text" th:field="*{location}" class="form-control mr-sm-2">
-                <p>Height <input type="text" th:field="*{height}" class="form-control mr-sm-2">
-                <p>Weight <input type="text" th:field="*{weight}" class="form-control mr-sm-2">
+                <p>Name: <input type="text" name="animalName" class="form-control mr-sm-2">
+                             
                 
-                
-                <select class="form-control mr-sm-2" name="location">
+                 <select class="form-control mr-sm-2" name="locationName">
 		        	<option value="">Select a location</option>
 		        	<option th:each="location : ${locations}"
-		        	th:value="${location.id}"
+		        	th:value="${location.name}"
 		        	th:text="${location.name}"></option>
 		        </select>
 		        
-                <select class="form-control mr-sm-2" name="alimentation">
+                <select class="form-control mr-sm-2" name="alimentationName">
 		        	<option value="">Select an alimentation</option>
 		        	<option th:each="alimentation : ${alimentations}"
-		        	th:value="${alimentation.id}"
+		        	th:value="${alimentation.name}"
 		        	th:text="${alimentation.name}"></option>
 		        </select>
 		        
-		        <select class="form-control mr-sm-2" name="classification">
+		        <select class="form-control mr-sm-2" name="classificationName">
 		        	<option value="">Select a classification</option>
 		        	<option th:each="classification : ${classifications}"
-		        	th:value="${classification.id}"
+		        	th:value="${classification.name}"
 		        	th:text="${classification.name}"></option>
 		        </select>
 		        
@@ -72,7 +87,6 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
                 
             </form>
-            -->
             
             
             

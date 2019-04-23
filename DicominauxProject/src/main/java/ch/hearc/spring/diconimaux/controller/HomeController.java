@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,6 +43,7 @@ public class HomeController {
 			
 			model.put("animals", animalRepository.findAll(new PageRequest(0,nbAnimalPerPage)));
 			//model.put("animals", animalRepository.findAll(new PageRequest(0,1)));
+			
 			model.put("locations", locationRepository.findAll());
 
 			model.put("classifications", classificationRepository.findAll());
@@ -100,12 +102,14 @@ public class HomeController {
 		}
 		
 		
-		@PostMapping("/search")
-		public String searchAnimal(@Valid @ModelAttribute String name, BindingResult errors, Map<String, Object> model)
+		/*@GetMapping("/search")
+		public String searchAnimal(Model model, BindingResult errors, @ModelAttribute("animal") Animal animal)
 		{
-			model.put("animals", animalRepository.findByName("Tigre"));
+			List<Animal> animals = this.animalRepository.findByName(animal.getName());
+			//model.put("animals", animalRepository.findByName(animal.getName()));
+			model.addAttribute("animals", animals);
 			return "listeAnimal";
-		}
+		}*/
 }
 
 

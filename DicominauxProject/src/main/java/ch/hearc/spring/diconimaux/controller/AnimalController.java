@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.hearc.spring.diconimaux.jparepository.AlimentationRepository;
 import ch.hearc.spring.diconimaux.jparepository.AnimalRepository;
@@ -91,14 +92,38 @@ public class AnimalController
 	{
 		
 		animalRepository.findById(animal.getId()).ifPresent(a -> model.addAttribute("animals", a));
-		
-		//model.addAttribute(locationRepository.findByAnimalID(animal.getLocation()));
-		
-		//System.out.println(locationRepository.findByAnimalID(animal.getLocation()).toString());
-
-		//model.addAttribute("locations", locationRepository.findByID(animal.getLocation().getId()));
-		
+				
 		return "infoAnimal";
 	}
+	
+	@GetMapping("/searchByLocation")
+	//public String searchAnimalByLocation(@ModelAttribute Location location, BindingResult bindingResult, Model model)
+	public String searchAnimalByLocation(@RequestParam("locationName") String location, Model model)
+	{
+	    
+	    model.addAttribute("animals", animalRepository.findByLocation(location));
+	    return "infoAnimal";
 
+	}
+	
+	@GetMapping("/searchByName")
+	//public String searchAnimalByLocation(@ModelAttribute Location location, BindingResult bindingResult, Model model)
+	public String searchAnimalByName(@RequestParam("animalName") String animal, Model model)
+	{
+	    
+	    model.addAttribute("animals", animalRepository.findByName(animal));
+	    return "infoAnimal";
+
+	}
+	
+	@GetMapping("/search")
+	//public String searchAnimalByLocation(@ModelAttribute Location location, BindingResult bindingResult, Model model)
+	public String searchAnimalRequest(@RequestParam("animalName") String animalName, @RequestParam("locationName") String locationName, 
+			@RequestParam("alimentationName") String alimentationName, @RequestParam("classificationName") String classificationName, Model model)
+	{
+	    
+	    model.addAttribute("animals", animalRepository.findByQuery(animalName, locationName, classificationName, alimentationName));
+	    return "infoAnimal";
+
+	}
 }
