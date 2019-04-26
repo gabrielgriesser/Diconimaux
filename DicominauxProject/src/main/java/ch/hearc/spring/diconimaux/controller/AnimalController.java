@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,7 +61,7 @@ public class AnimalController
 				
 		animalRepository.save(animal);
 		
-		model.put("animals", animalRepository.findAll());
+		model.put("animals", animalRepository.findAll(new PageRequest(0,PageableAnimal.nbAnimalPerPage)));
 		
 		model.put("locations", locationRepository.findAll());
 
@@ -96,33 +97,15 @@ public class AnimalController
 		return "infoAnimal";
 	}
 	
-	@GetMapping("/searchByLocation")
-	//public String searchAnimalByLocation(@ModelAttribute Location location, BindingResult bindingResult, Model model)
-	public String searchAnimalByLocation(@RequestParam("locationName") String location, Model model)
-	{
-	    
-	    model.addAttribute("animals", animalRepository.findByLocation(location));
-	    return "infoAnimal";
-
-	}
-	
-	@GetMapping("/searchByName")
-	//public String searchAnimalByLocation(@ModelAttribute Location location, BindingResult bindingResult, Model model)
-	public String searchAnimalByName(@RequestParam("animalName") String animal, Model model)
-	{
-	    
-	    model.addAttribute("animals", animalRepository.findByName(animal));
-	    return "infoAnimal";
-
-	}
 	
 	@GetMapping("/search")
-	//public String searchAnimalByLocation(@ModelAttribute Location location, BindingResult bindingResult, Model model)
-	public String searchAnimalRequest(@RequestParam("animalName") String animalName, @RequestParam("locationName") String locationName, 
-			@RequestParam("alimentationName") String alimentationName, @RequestParam("classificationName") String classificationName, Model model)
+	public String searchAnimalRequest(@RequestParam(value="animalName", required=false) String animalName, @RequestParam(value="locationName", required=false) String locationName, 
+			@RequestParam(value="alimentationName", required=false) String alimentationName, @RequestParam(value="classificationName", required = false) String classificationName, Model model)
 	{
 	    
-	    model.addAttribute("animals", animalRepository.findByQuery(animalName, locationName, classificationName, alimentationName));
+    	model.addAttribute("animals", animalRepository.findByQuery(animalName, locationName, classificationName, alimentationName));
+	    
+	    
 	    return "infoAnimal";
 
 	}
