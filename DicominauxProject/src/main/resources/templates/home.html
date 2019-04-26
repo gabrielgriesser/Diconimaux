@@ -62,7 +62,7 @@
                 <p>Name: <input type="text" name="animalName" class="form-control mr-sm-2">
                              
                 
-                 <select class="form-control mr-sm-2" name="locationName">
+                <select class="form-control mr-sm-2" name="locationName">
 		        	<option value="">Select a location</option>
 		        	<option th:each="location : ${locations}"
 		        	th:value="${location.name}"
