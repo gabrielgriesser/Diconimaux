@@ -75,6 +75,8 @@
 						<th scope="col">Alimentation</th>
 						<th scope="col">Location</th>
 						<th scope="col">Classification</th>
+						<th></th>
+						<th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,7 +97,7 @@
           				<td>
 							<form action="#" th:action="@{'/delete/{id}'(id=${animal.id})}" th:method="delete">
 	          					<input type="hidden" name="_method" value="delete" />			
-								<button class="btn btn-danger" type="submit" id="submitButton" onclick="return confirm('Are you sure?')">Delete</button>
+								<button class="btn btn-danger" type="submit" id="submitButton" onclick="return confirm('Are you sure?')">X</button>
 	          				</form>	
           				</td>						
 					</tr>
