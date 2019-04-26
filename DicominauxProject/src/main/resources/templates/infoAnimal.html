@@ -1,53 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="fragments/fragments.html :: login"/>
-</head>
-<body>
 
-	<div class="container">
-				
-		<div class="jumbotron">
+    <div th:replace="fragments/fragments.html :: header"></div>
 
-			
-			<h1 class="display-4" th:each="animal: ${animals}" th:text="${animal.name}"></h1>
-			 
-			<div class="container">
-				
-				<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">ID</th>
-						<th scope="col">Name</th>
-						<th scope="col">Description</th>
-						<th scope="col">Alimentation</th>
-						<th scope="col">Location</th>
-						<th scope="col">Classification</th>
-						<th scope="col">Height</th>
-						<th scope="col">Weight</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<tr th:each="animal: ${animals}">
-						<td th:text="${animal.id}" />
-						<td th:text="${animal.name}" />
-						<td th:text="${animal.description}" />
-						<td th:text="${animal.alimentation}" />
-						<td th:text="${animal.location}" />
-						<td th:text="${animal.classification}" />
-						<td th:text="${animal.height} + m" />
-						<td th:text="${animal.weight} + kg" />
-					</tr>
-					
-				</tbody>
-				</table>			
+    <body>
+        
+        <div th:replace="fragments/fragments.html :: nav_header"></div>
+
+        <div class="container mt-sm-3">
+			<h1 th:each="animal: ${animals}" th:text="${animal.name}"></h1>
+			<div id="infos" th:each="animal: ${animals}" class="mt-sm-3">
+				<img class="rounded float-right" width="40%" src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg">
+				<h3>Description</h3>
+				<p th:text="${animal.description}"></p>
+				<h3>Alimentation</h3>
+				<p th:text="${animal.alimentation}"></p>
+				<h3>Location</h3>
+				<p th:text="${animal.location}"></p>
+				<h3>Classification</h3>
+				<p th:text="${animal.classification}"></p>
+				<h3>Height</h3>
+				<p><span th:text="${animal.height}"></span> cm</p>
+				<h3>Weight</h3>
+				<p><span th:text="${animal.weight}"></span> kg</p>
 			</div>
-				
-			<p>Click <a class="btn btn-info" th:href="@{/}">here</a> to get home.</p>
 			
 		</div>
-		
-	</div>
-
-</body>
+		<div th:replace="fragments/fragments.html :: scripts"></div>
+	</body>
 </html>
