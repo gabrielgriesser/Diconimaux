@@ -40,10 +40,6 @@ public class Animal
 	@Column(name="weight")
 	private Integer weight;
 
-	//private String nameLocation;
-	//private String nameClassification;
-	//private String nameAlimentation;
-
 	public Animal() {
 		// TODO Auto-generated constructor stub
 	}
@@ -56,75 +52,15 @@ public class Animal
 		this.weight = weight;
 		this.alimentation = alimentation;
 		this.location = location;
-		this.classification = classification;
-		
-		/*
-			if(location != null || alimentation != null || classification != null)
-			
-			{
-				setNameAlimentation(alimentation.getName());
-				setNameLocation(location.getName());
-				setNameClassification(classification.getName());
-				
-				System.out.println("l : " + nameLocation + " a : " + nameAlimentation + " C : " + nameClassification);
-			}
-			else
-			{
-				System.out.println("NULL");
-			}
-		*/
+		this.classification = classification;		
 
 	}
-	
-
-	
-	/*
-	 * ICI on a le champs NOM LOCATION/CLASS/ALIM
-	 * CE QUI EST ETRANGE, C'EST QUE ICI LE location.getName EST NULL !!!
-	 * Alors que si dans la méthode getLocation() je teste location.getName(), c'est PAS NULL !!!
-	 * POURQUOI ?
-	 * LE MIEUX EST D'EVITER D'UTILISER UN CHAMP NOMLOCATION/NOMXXX !!!
-	 * Donc pas obligatoire, pour l'instant ça marche sans ces champs
-	 */
-	/*
-		public String getNameLocation()
-		{
-			
-			//System.out.println("NOM : " + location.getName());
-			return this.nameLocation;
-		}
-		
-		public String getNameClassification()
-		{
-			return this.classification.getName();
-		}
-		public String getNameAlimentation()
-		{
-			return this.nameAlimentation;
-		}
-		
-		
-		
-		public void setNameLocation(String name)
-		{
-			this.nameLocation = name;
-		}
-		public void setNameClassification(String name)
-		{
-			this.nameClassification = name;
-		}
-		public void setNameAlimentation(String name)
-		{
-			this.nameAlimentation = name;
-		}
-		
-	*/
 	
 	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -136,11 +72,7 @@ public class Animal
 		this.description = description;
 	}
 
-	/*
-	 * ICI, la méthode de retour est STRING ! Ca marche donc pour l'affichage (qui affiche le NOM)
-	 * MAIS CA MARCHE PAS POUR LE FORMULAIRE QUI A BESOIN D'UN ACCES A LA CLASSE et pas au NOM ! 
-	 * Si on le retour par Alimentation/Location/Classification, le formulaire MARCHE ! Mais regarde l'affichage...
-	 */
+
 	public String getAlimentation() 
 	{
 		if(alimentation != null)
@@ -152,16 +84,30 @@ public class Animal
 	
 	public String getLocation() 
 	{
-		//return this.location;
 		if(location != null)
 			return location.getName();
 		else
 			return null;
 			
 	}
+	
+	public Location getLocationObject()
+	{
+		return location;
+	}
+	
+	public Classification getClassificationObject()
+	{
+		return classification;
+	}
+	
+	public Alimentation getAlimentationObject()
+	{
+		return alimentation;
+	}
+	
 	public String getClassification() 
 	{
-		//return this.classification;
 		if(classification != null)
 			return classification.getName();
 		else
@@ -174,6 +120,7 @@ public class Animal
 	{
 		this.location = location;
 	}
+	
 
 	public void setAlimentation(Alimentation alimentation) {
 		this.alimentation = alimentation;

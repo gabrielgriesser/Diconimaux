@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<div th:replace="fragments/fragments.html :: header"></div>	
+    <body>
+        
+        <div th:replace="fragments/fragments.html :: nav_header"></div>
+
+        <div class="container mt-sm-3">
+        <h1>Animals : </h1>			
+        
+			<div id="infos" th:each="animal: ${animals}" class="mt-sm-3">
+				<h3 th:text="${animal.name}"></h3>			
+				<h5>ID</h5>
+				<p th:text="'#' + ${animal.id}"></p>
+				<h5>Description</h5>
+				<p th:text="${animal.description}"></p>
+				<h5>Alimentation</h5>
+				<p th:text="${animal.alimentation}"></p>
+				<h5>Location</h5>
+				<p th:text="${animal.location}"></p>
+				<h5>Classification</h5>
+				<p th:text="${animal.classification}"></p>
+				<h5>Height</h5>
+				<p><span th:text="${animal.height}"></span> cm</p>
+				<h5>Weight</h5>
+				<p><span th:text="${animal.weight}"></span> kg</p>
+				<form action="#" th:action="@{/updateForm}" th:object="${animal}" th:method="post" >
+				    <input type="hidden" th:value="${animal.id}" name="animalID" />	
+					<input type="hidden" th:value="${animal.name}" name="animalName" />	
+					<input type="hidden" th:value="${animal.description}" name="animalDescription" />	
+					<input type="hidden" th:value="${animal.alimentation}" name="animalAlimentation" />	
+					<input type="hidden" th:value="${animal.location}" name="animalLocation" />	
+					<input type="hidden" th:value="${animal.classification}" name="animalClassification" />	
+					<input type="hidden" th:value="${animal.height}" name="animalHeight" />	
+					<input type="hidden" th:value="${animal.weight}" name="animalWeight" />														
+					<button type="submit" class="btn btn-primary">Update</button>
+				</form>
+				<br />
+				<br />
+				
+			</div>
+
+			<h1>Locations : </h1>						
+			<div id="location" th:each="location: ${locations}" class="mt-sm-3">
+				<h3 th:text="${location.name}"></h3>			
+				<h5>ID</h5>
+				<p th:text="'#' + ${location.id}"></p>
+				<form action="#" th:action="@{'/deleteLocation/{id}'(id=${location.id})}" th:method="delete">
+					<input type="hidden" name="_method" value="delete" />			
+					<button class="btn btn-danger" type="submit" id="submitButton" onclick="return confirm('Are you sure?')">X</button>
+				</form>	
+			</div>
+			<br />
+			
+			<h1>Classifications : </h1>		
+			<div id="classification" th:each="classification: ${classifications}" class="mt-sm-3">
+				<h3 th:text="${classification.name}"></h3>			
+				<h5>ID</h5>
+				<p th:text="'#' + ${classification.id}"></p>
+				<form action="#" th:action="@{'/deleteClassification/{id}'(id=${classification.id})}" th:method="delete">
+					<input type="hidden" name="_method" value="delete" />			
+					<button class="btn btn-danger" type="submit" id="submitButton" onclick="return confirm('Are you sure?')">X</button>
+				</form>
+			</div>
+			<br />
+			
+			<h1>Alimentations : </h1>						
+			<div id="alimentation" th:each="alimentation: ${alimentations}" class="mt-sm-3">
+				<h3 th:text="${alimentation.name}"></h3>			
+				<h5>ID</h5>
+				<p th:text="'#' + ${alimentation.id}"></p>	
+				<form action="#" th:action="@{'/deleteAlimentation/{id}'(id=${alimentation.id})}" th:method="delete">
+					<input type="hidden" name="_method" value="delete" />			
+					<button class="btn btn-danger" type="submit" id="submitButton" onclick="return confirm('Are you sure?')">X</button>
+				</form>				
+			</div>
+			<br />
+			
+			<p><a class="btn btn-info" th:href="@{/}">Go home</a></p>
+			
+					
+		</div>
+		<div th:replace="fragments/fragments.html :: scripts"></div>
+	</body>
+</html>

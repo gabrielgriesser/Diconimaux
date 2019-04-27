@@ -30,11 +30,10 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-           
             
 	      <form action='#' th:action="@{/search}" th:object="${animal}" method="get" class="form-inline mb-sm-2 float-right">
                 
-                <p>Name: <input type="text" name="animalName" class="form-control mr-sm-2">
+                <p>Name: <input type="text" id="animalName" name="animalName" class="form-control mr-sm-2">
                              
                 
                 <select class="form-control mr-sm-2" name="locationName">
@@ -58,7 +57,25 @@
 		        	th:text="${classification.name}"></option>
 		        </select>
 		        
+		        <!--
 		        
+		        <select class="form-control mr-sm-2" name="heightGreater">
+		        	<option value="">Height</option>
+		        	<option> &lt; </option>
+		        	<option> &gt; </option>
+		        </select>
+		        
+		        <input type="number" name="heightValue" class="form-control mr-sm-2">
+		        
+		         <select class="form-control mr-sm-2" name="weightGreater">
+		        	<option value="">Weight</option>
+		        	<option> &lt; </option>
+		        	<option> &gt; </option>
+		        </select>
+		        
+		        <input type="number" name="weightValue" class="form-control mr-sm-2">
+		        
+		        -->
                 <button class="btn btn-outline-success" type="submit">Search</button>
                 
             </form>

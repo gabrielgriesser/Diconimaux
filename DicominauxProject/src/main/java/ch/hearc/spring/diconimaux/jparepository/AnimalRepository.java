@@ -10,14 +10,14 @@ import ch.hearc.spring.diconimaux.model.Animal;
 
 public interface AnimalRepository extends JpaRepository<Animal, Long>
 {
-
 	
 	@Query(value="SELECT * FROM animal ani, location loc, classification cla, alimentation ali"
 			+ " WHERE ani.location_id = loc.id AND ani.classification_id = cla.id AND ani.alimentation_id = ali.id"
 			+ " AND ani.name LIKE CONCAT('%',:animalName,'%')"
 			+ " AND loc.name LIKE CONCAT('%',:locationName,'%')"
 			+ " AND cla.name LIKE CONCAT('%',:classificationName,'%')"
-			+ " AND ali.name LIKE CONCAT('%',:alimentationName,'%')", nativeQuery=true)
+			+ " AND ali.name LIKE CONCAT('%',:alimentationName,'%')"
+			+ " ORDER BY ani.id, ani.name ASC", nativeQuery=true)
 	List<Animal> findByQuery
 			(
 			@Param("animalName") String animalName, 

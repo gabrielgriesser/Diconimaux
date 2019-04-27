@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import ch.hearc.spring.diconimaux.PageableAnimal;
 import ch.hearc.spring.diconimaux.jparepository.AlimentationRepository;
 import ch.hearc.spring.diconimaux.jparepository.AnimalRepository;
 import ch.hearc.spring.diconimaux.jparepository.ClassificationRepository;
@@ -49,12 +50,10 @@ public class HomeController {
 		public String homePageable(Map<String, Object> model, @PathVariable int page)
 		{
 
-			model.put("page", "Accueil");
-			
-			
+			model.put("page", "Accueil");			
 			
 			model.put("animals", animalRepository.findAll(new PageRequest(page - 1,PageableAnimal.nbAnimalPerPage)));
-			//model.put("animals", animalRepository.findAll(new PageRequest(0,1)));
+
 			model.put("locations", locationRepository.findAll());
 
 			model.put("classifications", classificationRepository.findAll());
@@ -77,30 +76,18 @@ public class HomeController {
 			return "user";
 		}
 		
-		@GetMapping("/animals")
+		@GetMapping("/datas")
 		public String getAllAnimal(Map<String, Object> model)
 		{
 			model.put("animals", animalRepository.findAll());
 			model.put("alimentations", alimentationRepository.findAll());
-			
-			//TODO HERE Query pour choper les alimentations de l'animal
-			//model.put("alimentations", alimentationRepository.findByAnimalID())
+
 			model.put("locations", locationRepository.findAll());
 			model.put("classifications", classificationRepository.findAll());
 
 			
-			return "listeAnimal";
+			return "data-list";
 		}
-		
-		
-		/*@GetMapping("/search")
-		public String searchAnimal(Model model, BindingResult errors, @ModelAttribute("animal") Animal animal)
-		{
-			List<Animal> animals = this.animalRepository.findByName(animal.getName());
-			//model.put("animals", animalRepository.findByName(animal.getName()));
-			model.addAttribute("animals", animals);
-			return "listeAnimal";
-		}*/
 }
 
 

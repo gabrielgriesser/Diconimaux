@@ -24,14 +24,23 @@
 
 <!--  *************** fragment de la navigation *************** -->
 <nav th:fragment="nav_header" class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Diconimaux</a>
+  <a class="navbar-brand" th:href="@{/}">Diconimaux</a>
   <div class="collapse navbar-collapse" id="navbarNav">
   <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-          <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" th:href="@{/formAnimal}">Add an animal</span></a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" th:href="@{/formAnimal}">Add</span></a>
+          <a class="nav-link" th:href="@{/formLocation}">Add a location</span></a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" th:href="@{/formClassification}">Add a classification</span></a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" th:href="@{/formAlimentation}">Add an alimentation</span></a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" th:href="@{/datas}">Data list <span class="sr-only">(current)</span></a>
       </li>
   </ul>
   <ul class="navbar-nav">
