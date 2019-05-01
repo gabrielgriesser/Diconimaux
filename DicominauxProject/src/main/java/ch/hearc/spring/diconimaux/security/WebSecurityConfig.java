@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 
 import javax.sql.DataSource;
 
@@ -56,6 +57,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .logoutSuccessUrl("/")
       .and().rememberMe();
     }
+    
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+}
 }
 
 
