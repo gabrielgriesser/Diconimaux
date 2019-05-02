@@ -35,26 +35,30 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
+	
+
+
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView model = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-
 		if (user != null) {
+			boolean isUserAdmin = auth.getAuthorities().stream()
+			          .anyMatch(r -> r.getAuthority().equals("ADMIN"));
+			boolean isUserConnected = auth.getAuthorities().stream()
+			          .anyMatch(r -> r.getAuthority().equals("USER"));
 			model.addObject("userName", user.getUsername());
+			model.addObject("isUserAdmin", isUserAdmin);
+			model.addObject("isUserConnected", isUserConnected);
+			model.addObject("userID", user.getId());
 		}
+		
 		model.addObject("page", "Accueil");
-
-
 		model.addObject("animals", animalRepository.findAll(new PageRequest(0, PageableAnimal.nbAnimalPerPage)));
-
-
 		model.addObject("locations", locationRepository.findAll());
-
 		model.addObject("classifications", classificationRepository.findAll());
-
 		model.addObject("alimentations", alimentationRepository.findAll());
 		model.setViewName("home");
 		return model;
@@ -62,6 +66,18 @@ public class HomeController {
 
 	@GetMapping("/page/{page}")
 	public String homePageable(Map<String, Object> model, @PathVariable int page) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		if (user != null) {
+			boolean isUserAdmin = auth.getAuthorities().stream()
+			          .anyMatch(r -> r.getAuthority().equals("ADMIN"));
+			boolean isUserConnected = auth.getAuthorities().stream()
+			          .anyMatch(r -> r.getAuthority().equals("USER"));
+			model.put("userName", user.getUsername());
+			model.put("isUserAdmin", isUserAdmin);
+			model.put("isUserConnected", isUserConnected);
+			model.put("userID", user.getId());
+		}
 
 		model.put("page", "Accueil");
 
@@ -89,13 +105,30 @@ public class HomeController {
 	}
 
 	@GetMapping("/datas")
-	public String getAllAnimal(Map<String, Object> model) {
-		model.put("animals", animalRepository.findAll());
-		model.put("alimentations", alimentationRepository.findAll());
+	public ModelAndView getAllAnimal() {
+		ModelAndView model = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
 
-		model.put("locations", locationRepository.findAll());
-		model.put("classifications", classificationRepository.findAll());
+		if (user != null) {
+			boolean isUserAdmin = auth.getAuthorities().stream()
+			          .anyMatch(r -> r.getAuthority().equals("ADMIN"));
+			boolean isUserConnected = auth.getAuthorities().stream()
+			          .anyMatch(r -> r.getAuthority().equals("USER"));
+			model.addObject("userName", user.getUsername());
+			model.addObject("isUserAdmin", isUserAdmin);
+			model.addObject("isUserConnected", isUserConnected);
+			model.addObject("userID", user.getId());
+		}
+		
+		model.addObject("animals", animalRepository.findAll());
+		model.addObject("alimentations", alimentationRepository.findAll());
 
-		return "data-list";
+		model.addObject("locations", locationRepository.findAll());
+		model.addObject("classifications", classificationRepository.findAll());
+		
+		model.setViewName("data-list");
+
+		return model;
 	}
 }

@@ -13,7 +13,7 @@
 		    
 		    	<div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter name">
+                    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter name" required>
                 </div>
 		    	
 		    	<div class="form-group">
@@ -33,21 +33,21 @@
 				</div>
                 
 		        
-		        <select class="form-control mb-sm-3" name="alimentation" th:field="*{alimentation}">
+		        <select class="form-control mb-sm-3" name="alimentation" th:field="*{alimentation}" required>
 		        	<option value="">Select an alimentation</option>
 		        	<option th:each="alimentation : ${alimentations}"
 		        	th:value="${alimentation.id}"
 		        	th:text="${alimentation.name}"></option>
 		        </select>
 		        
-		        <select class="form-control mb-sm-3" name="location" th:field="*{location}">
+		        <select class="form-control mb-sm-3" name="location" th:field="*{location}" required>
 		        	<option value="">Select a location</option>
 			        	<option th:each="location : ${locations}"
 			        	th:value="${location.id}"
 			        	th:text="${location.name}"></option>
 		        </select>
 		        
-		        <select class="form-control mb-sm-3" name="classification" th:field="*{classification}">
+		        <select class="form-control mb-sm-3" name="classification" th:field="*{classification}" required>
 		        	<option value="">Select a classification</option>
 			        	<option th:each="classification : ${classifications}"
 			        	th:value="${classification.id}"
@@ -56,12 +56,12 @@
 			    
 			    <div class="form-group">
                     <label for="height">Height</label>
-                    <input type="number" class="form-control" id="height" th:field="*{height}">
+                    <input type="number" class="form-control" id="height" th:field="*{height}" required>
                 </div>
 			    
 			    <div class="form-group">
                     <label for="weight">Weight</label>
-                    <input type="number" class="form-control" id="weight" th:field="*{weight}">
+                    <input type="number" class="form-control" id="weight" th:field="*{weight}" required>
                 </div>
 			    
 		        <button type="submit" class="btn btn-primary">Add</button>

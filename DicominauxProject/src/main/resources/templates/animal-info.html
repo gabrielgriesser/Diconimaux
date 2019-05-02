@@ -11,8 +11,6 @@
 			<div id="infos" th:each="animal: ${animals}" class="mt-sm-3">
 				<h1 th:text="${animal.name}"></h1>			
 				<img class="rounded float-right" width="40%" th:src="@{'/images/' + ${animal.image_url}}">
-				<h3>ID</h3>
-				<p th:text="'#' + ${animal.id}"></p>
 				<h3>Description</h3>
 				<p th:text="${animal.description}"></p>
 				<h3>Alimentation</h3>
@@ -25,7 +23,7 @@
 				<p><span th:text="${animal.height}"></span> cm</p>
 				<h3>Weight</h3>
 				<p><span th:text="${animal.weight}"></span> kg</p>
-				<form action="#" th:action="@{/updateForm}" th:object="${animal}" th:method="post" >
+				<form action="#" th:action="@{/updateForm}" th:object="${animal}" th:method="post" th:if="${isUserAdmin == True OR userID == animal.userId}">
 				    <input type="hidden" th:value="${animal.id}" name="animalID" />	
 					<input type="hidden" th:value="${animal.name}" name="animalName" />	
 					<input type="hidden" th:value="${animal.description}" name="animalDescription" />	

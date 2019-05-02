@@ -9,21 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class MVCConfig implements WebMvcConfigurer {
-	
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-}
 
-	/*
-	 * public void addViewControllers(ViewControllerRegistry registry) {
-	 * registry.addViewController("/").setViewName("home");
-	 * registry.addViewController("/home").setViewName("home");
-	 * registry.addViewController("/user").setViewName("user");
-	 * registry.addViewController("/admin").setViewName("admin");
-	 * registry.addViewController("/login").setViewName("login");
-	 * registry.addViewController("/registration").setViewName("registration"); }
-	 */
-
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}
 }

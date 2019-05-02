@@ -6,6 +6,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,8 @@ import ch.hearc.spring.diconimaux.jparepository.AnimalRepository;
 import ch.hearc.spring.diconimaux.jparepository.ClassificationRepository;
 import ch.hearc.spring.diconimaux.jparepository.LocationRepository;
 import ch.hearc.spring.diconimaux.model.Alimentation;
+import ch.hearc.spring.diconimaux.model.User;
+import ch.hearc.spring.diconimaux.service.UserService;
 
 @Controller
 
@@ -33,10 +37,26 @@ public class AlimentationController
 	@Autowired
 	LocationRepository locationRepository;
 	
+	@Autowired
+	private UserService userService;
+	
 
 	@GetMapping("/formAlimentation")
 	public String formAlimentation(Model model)
 	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		if (user != null) {
+			boolean isUserAdmin = auth.getAuthorities().stream()
+			          .anyMatch(r -> r.getAuthority().equals("ADMIN"));
+			boolean isUserConnected = auth.getAuthorities().stream()
+			          .anyMatch(r -> r.getAuthority().equals("USER"));
+			model.addAttribute("userName", user.getUsername());
+			model.addAttribute("isUserAdmin", isUserAdmin);
+			model.addAttribute("isUserConnected", isUserConnected);
+			model.addAttribute("userID", user.getId());
+		}
+		
 		model.addAttribute("alimentation", new Alimentation());				
 		
 		return "alimentation-add";
@@ -48,18 +68,8 @@ public class AlimentationController
 		if(!errors.hasErrors())
 		{
 			alimentationRepository.save(alimentation);
-			
-			model.put("animals", animalRepository.findAll(new PageRequest(0,PageableAnimal.nbAnimalPerPage)));
-			
-			model.put("locations", locationRepository.findAll());
-
-			model.put("classifications", classificationRepository.findAll());
-			
-			model.put("alimentations", alimentationRepository.findAll());
 		}
-		
-			
-		return "home";
+		return "redirect:/";
 	}
 
 	@DeleteMapping("/deleteAlimentation/{id}")
@@ -68,17 +78,7 @@ public class AlimentationController
 		if(!errors.hasErrors())
 		{
 			alimentationRepository.delete(alimentation);
-			
-			model.put("animals", animalRepository.findAll(new PageRequest(0,PageableAnimal.nbAnimalPerPage)));
-			
-			model.put("locations", locationRepository.findAll());
-
-			model.put("classifications", classificationRepository.findAll());
-			
-			model.put("alimentations", alimentationRepository.findAll());
 		}
-		
-		
-		return "data-list";
+		return "redirect:/datas";
 	}
 }

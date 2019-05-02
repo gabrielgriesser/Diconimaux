@@ -42,12 +42,16 @@ public class Animal
 	
 	@Column(name="weight")
 	private Integer weight;
+	
+	@Column(name="user_id")
+	private Integer userId;
+
 
 	public Animal() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Animal(String name, String description, String image_url, Integer height, Integer weight, Location location, Alimentation alimentation, Classification classification) {
+	public Animal(String name, String description, String image_url, Integer height, Integer weight, Integer userId, Location location, Alimentation alimentation, Classification classification) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -57,6 +61,7 @@ public class Animal
 		this.location = location;
 		this.classification = classification;		
 		this.image_url = image_url;
+		this.userId = userId;
 	}
 	
 	public long getId() {
@@ -124,8 +129,6 @@ public class Animal
 			return null;	
 	}
 
-	
-
 	public void setLocation(Location location) 
 	{
 		this.location = location;
@@ -164,6 +167,14 @@ public class Animal
 	public String getName() 
 	{
 		return this.name;
-	}	
+	}
+	
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	
 }
