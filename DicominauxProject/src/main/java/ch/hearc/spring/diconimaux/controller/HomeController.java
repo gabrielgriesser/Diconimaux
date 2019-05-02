@@ -1,5 +1,7 @@
 package ch.hearc.spring.diconimaux.controller;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,14 @@ public class HomeController {
 
 		model.addObject("animals", animalRepository.findAll(new PageRequest(0, PageableAnimal.nbAnimalPerPage)));
 
+		
+		// calc nb pages
+		ArrayList<Integer> pagesNumbers = new ArrayList<Integer>();
+		double nbPages = (double)animalRepository.findAll().size() / (double)PageableAnimal.nbAnimalPerPage;
+		double i; for (i = 1; i <= nbPages; i++) { pagesNumbers.add((int)i); }
+		if (i - nbPages != 1)
+			pagesNumbers.add((int)i);
+		model.addObject("pagesNumber", pagesNumbers);
 
 		model.addObject("locations", locationRepository.findAll());
 
@@ -67,6 +77,14 @@ public class HomeController {
 
 		model.put("animals", animalRepository.findAll(new PageRequest(page - 1, PageableAnimal.nbAnimalPerPage)));
 
+		// calc nb pages
+		ArrayList<Integer> pagesNumbers = new ArrayList<Integer>();
+		double nbPages = (double)animalRepository.findAll().size() / (double)PageableAnimal.nbAnimalPerPage;
+		double i; for (i = 1; i <= nbPages; i++) { pagesNumbers.add((int)i); }
+		if (i - nbPages != 1)
+			pagesNumbers.add((int)i);
+		model.put("pagesNumber", pagesNumbers);
+		
 		model.put("locations", locationRepository.findAll());
 
 		model.put("classifications", classificationRepository.findAll());
