@@ -22,6 +22,9 @@ public class Animal
 	@Column(name="description")
 	private String description;
 	
+	@Column(name="image_url")
+	private String image_url;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "alimentation_id")
 	private Alimentation alimentation;
@@ -44,7 +47,7 @@ public class Animal
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Animal(String name, String description, Integer height, Integer weight, Location location, Alimentation alimentation, Classification classification) {
+	public Animal(String name, String description, String image_url, Integer height, Integer weight, Location location, Alimentation alimentation, Classification classification) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -53,7 +56,7 @@ public class Animal
 		this.alimentation = alimentation;
 		this.location = location;
 		this.classification = classification;		
-
+		this.image_url = image_url;
 	}
 	
 	public long getId() {
@@ -71,7 +74,14 @@ public class Animal
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getImage_url() {
+		return image_url;
+	}
 
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
 
 	public String getAlimentation() 
 	{

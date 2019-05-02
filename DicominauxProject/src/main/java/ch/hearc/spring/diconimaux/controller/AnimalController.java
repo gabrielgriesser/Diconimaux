@@ -1,4 +1,8 @@
 package ch.hearc.spring.diconimaux.controller;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -13,8 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ch.hearc.spring.diconimaux.PageableAnimal;
 import ch.hearc.spring.diconimaux.jparepository.AlimentationRepository;
 import ch.hearc.spring.diconimaux.jparepository.AnimalRepository;
 import ch.hearc.spring.diconimaux.jparepository.ClassificationRepository;
@@ -23,6 +28,7 @@ import ch.hearc.spring.diconimaux.model.Alimentation;
 import ch.hearc.spring.diconimaux.model.Animal;
 import ch.hearc.spring.diconimaux.model.Classification;
 import ch.hearc.spring.diconimaux.model.Location;
+
 
 @Controller
 
@@ -37,6 +43,11 @@ public class AnimalController
 	@Autowired
 	LocationRepository locationRepository;
 	
+	
+	
+
+	
+    
 	private Long animalID;
 	private String animalName;
 	private String animalDescription;
@@ -87,10 +98,24 @@ public class AnimalController
 	}
 	
 	@PostMapping("/saveAnimal")
-	public String saveAnimal(@Valid @ModelAttribute Animal animal, BindingResult errors,  Map<String, Object> model)
+	public String saveAnimal(@RequestParam("file") MultipartFile file, @Valid @ModelAttribute Animal animal, BindingResult errors,  Map<String, Object> model,
+            RedirectAttributes redirectAttributes)
 	{
+		
+		
 		if(!errors.hasErrors())
 		{
+			try {
+
+	            // Get the file and save it somewhere
+	            byte[] bytes = file.getBytes();
+	            Path path = Paths.get("src/main/resources/static/images/" + file.getOriginalFilename());
+	            Files.write(path, bytes);
+	            animal.setImage_url(file.getOriginalFilename());
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+			
 			animalRepository.save(animal);
 			
 			model.put("animals", animalRepository.findAll(new PageRequest(0,PageableAnimal.nbAnimalPerPage)));
@@ -136,7 +161,7 @@ public class AnimalController
 	}
 	
 	@PostMapping("/update")
-	public String updateAnimal(@ModelAttribute Animal animal, BindingResult errors,  Model model)
+	public String updateAnimal(@RequestParam("file") MultipartFile file, @ModelAttribute Animal animal, BindingResult errors,  Model model)
 	{
 		if(!errors.hasErrors())
 		{
@@ -182,6 +207,17 @@ public class AnimalController
 				a.setWeight(animalWeight);
 			else
 				a.setWeight(animal.getWeight());
+			
+			try {
+
+	            // Get the file and save it somewhere
+	            byte[] bytes = file.getBytes();
+	            Path path = Paths.get("src/main/resources/static/images/" + file.getOriginalFilename());
+	            Files.write(path, bytes);
+	            a.setImage_url(file.getOriginalFilename());
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 			
 			animalRepository.save(a);
 			

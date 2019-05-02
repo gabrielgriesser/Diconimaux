@@ -10,7 +10,7 @@
         <div class="container mt-sm-3">
 			<div id="infos" th:each="animal: ${animals}" class="mt-sm-3">
 				<h1 th:text="${animal.name}"></h1>			
-				<img class="rounded float-right" width="40%" src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg">
+				<img class="rounded float-right" width="40%" th:src="@{'/images/' + ${animal.image_url}}">
 				<h3>ID</h3>
 				<p th:text="'#' + ${animal.id}"></p>
 				<h3>Description</h3>

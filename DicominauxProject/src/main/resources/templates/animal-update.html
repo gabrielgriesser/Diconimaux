@@ -9,7 +9,7 @@
 			
 			
 							
-		    <form action="#" th:action="@{/update}" th:object="${animal}" th:method="post">
+		    <form action="#" th:action="@{/update}" th:object="${animal}" th:method="post" enctype="multipart/form-data>
 		    
 		    	<div class="form-group">
                     <label for="name">Name</label>
@@ -20,6 +20,17 @@
                     <label for="desc">Description</label>
                     <input type="text" class="form-control" th:field="*{description}" th:placeholder="${animal.description}">
                 </div>
+                
+                <div class="input-group mb-sm-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+				  </div>
+				  <div class="custom-file">
+				    <input type="file" name="file" id="file" class="custom-file-input"
+				      aria-describedby="inputGroupFileAddon01">
+				    <label class="custom-file-label" for="file">Choose Image</label>
+				  </div>
+				</div>
 		        
 		        <select class="form-control mb-sm-3" name="alimentation" th:field="*{alimentation}">
 		        	<option value="">Select an alimentation</option>

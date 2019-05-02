@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import ch.hearc.spring.diconimaux.PageableAnimal;
 import ch.hearc.spring.diconimaux.jparepository.AlimentationRepository;
 import ch.hearc.spring.diconimaux.jparepository.AnimalRepository;
 import ch.hearc.spring.diconimaux.jparepository.ClassificationRepository;
@@ -41,7 +40,6 @@ public class HomeController {
 			model.put("classifications", classificationRepository.findAll());
 			
 			model.put("alimentations", alimentationRepository.findAll());
-
 			
 			return "home";
 		}
@@ -53,6 +51,7 @@ public class HomeController {
 			model.put("page", "Accueil");			
 			
 			model.put("animals", animalRepository.findAll(new PageRequest(page - 1,PageableAnimal.nbAnimalPerPage)));
+			
 
 			model.put("locations", locationRepository.findAll());
 

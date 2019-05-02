@@ -99,7 +99,7 @@
                 <tbody>
 					<tr th:each="animal, iterStat: ${animals}" th:if="${iterStat.index <= 2}">
 					
-						<td><img src="https://assets.nrdc.org/sites/default/files/styles/full_content--retina/public/media-uploads/wlds43_654640_2400.jpg" class="img-fluid"></td>
+						<td><img th:src="@{'/images/' + ${animal.image_url}}" class="img-fluid"></td>
 						<td th:text="${animal.name}" />
 						<td th:text="${animal.alimentation}" />
 						<td th:text="${animal.location}" />
