@@ -60,24 +60,6 @@ public class HomeController {
 		return model;
 	}
 
-	/*
-	 * @GetMapping("/") public String home(Map<String, Object> model) {
-	 * 
-	 * model.put("page", "Accueil");
-	 * 
-	 * model.put("animals", animalRepository.findAll(new
-	 * PageRequest(0,PageableAnimal.nbAnimalPerPage)));
-	 * 
-	 * model.put("locations", locationRepository.findAll());
-	 * 
-	 * model.put("classifications", classificationRepository.findAll());
-	 * 
-	 * model.put("alimentations", alimentationRepository.findAll());
-	 * 
-	 * 
-	 * return "home"; }
-	 */
-
 	@GetMapping("/page/{page}")
 	public String homePageable(Map<String, Object> model, @PathVariable int page) {
 

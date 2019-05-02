@@ -42,11 +42,6 @@ public class AnimalController
 	ClassificationRepository classificationRepository;
 	@Autowired
 	LocationRepository locationRepository;
-	
-	
-	
-
-	
     
 	private Long animalID;
 	private String animalName;
