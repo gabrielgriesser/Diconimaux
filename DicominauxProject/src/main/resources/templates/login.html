@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <div th:replace="fragments/fragments.html :: header"></div>
-    <body>
-        <div th:replace="fragments/fragments.html :: nav_header"></div>
-        <div class="container mt-sm-3">
-            <h1>Login</h1>
-            <div th:if="${param.error}">
-	            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
-	        </div>
-	        <div th:if="${param.logout}">
-	            You have been logged out.
-	        </div>
-            <form th:action="@{/login}" method="post">
-                <div class="form-group">
-                    <label for="inputUsername">Email</label>
-                    <input type="text" id="email" name="email"  th:placeholder="Email" class="form-control" />
-                    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword1">Password</label>
-                    <input type="password"  th:placeholder="Password" id="password" name="password" class="form-control" />
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-              </form>
-            
-        </div>
-        <div th:replace="fragments/fragments.html :: scripts"></div>
-    </body>
+<div th:replace="fragments/fragments.html :: header"></div>
+<body>
+	<div th:replace="fragments/fragments.html :: nav_header"></div>
+	<div class="container mt-sm-3">
+		<h1>Login</h1>
+		<h3>Admin connection : admin@admin.com / Password : admin</h3>
+		<div th:if="${param.error}">
+			<p style="font-size: 20; color: #FF1C19;">Email or Password
+				invalid, please verify</p>
+		</div>
+		<div th:if="${param.logout}">You have been logged out.</div>
+		<form th:action="@{/login}" method="post">
+			<div class="form-group">
+				<label for="inputUsername">Email</label> <input type="email"
+					id="email" name="email" th:placeholder="Email" class="form-control"
+					required />
+				<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+			</div>
+			<div class="form-group">
+				<label for="inputPassword1">Password</label> <input type="password"
+					th:placeholder="Password" id="password" name="password"
+					class="form-control" required />
+			</div>
+			<button type="submit" class="btn btn-primary">Login</button>
+		</form>
+	</div>
+	<div th:replace="fragments/fragments.html :: scripts"></div>
+</body>
 </html>

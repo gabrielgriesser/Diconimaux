@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-    <div th:replace="fragments/fragments.html :: header"></div>
-
-    <body>
-        
-        <div th:replace="fragments/fragments.html :: nav_header"></div>
-
-        <div class="container mt-sm-3">
-			<div id="infos" th:each="animal: ${animals}" class="mt-sm-3">
-				<h1 th:text="${animal.name}"></h1>			
-				<img class="rounded float-right" width="40%" th:src="@{'/images/' + ${animal.image_url}}">
-				<h3>Description</h3>
-				<p th:text="${animal.description}"></p>
-				<h3>Alimentation</h3>
-				<p th:text="${animal.alimentation}"></p>
-				<h3>Location</h3>
-				<p th:text="${animal.location}"></p>
-				<h3>Classification</h3>
-				<p th:text="${animal.classification}"></p>
-				<h3>Height</h3>
-				<p><span th:text="${animal.height}"></span> cm</p>
-				<h3>Weight</h3>
-				<p><span th:text="${animal.weight}"></span> kg</p>
-				<form action="#" th:action="@{/updateForm}" th:object="${animal}" th:method="post" th:if="${isUserAdmin == True OR userID == animal.userId}">
-				    <input type="hidden" th:value="${animal.id}" name="animalID" />	
-					<input type="hidden" th:value="${animal.name}" name="animalName" />	
-					<input type="hidden" th:value="${animal.description}" name="animalDescription" />	
-					<input type="hidden" th:value="${animal.alimentation}" name="animalAlimentation" />	
-					<input type="hidden" th:value="${animal.location}" name="animalLocation" />	
-					<input type="hidden" th:value="${animal.classification}" name="animalClassification" />	
-					<input type="hidden" th:value="${animal.height}" name="animalHeight" />	
-					<input type="hidden" th:value="${animal.weight}" name="animalWeight" />														
-					<button type="submit" class="btn btn-primary">Update</button>
-				</form>
-				<br />
-				<br />
-				
-			</div>
-			
-			<p><a class="btn btn-info" th:href="@{/}">Go home</a></p>
-			
-					
+<div th:replace="fragments/fragments.html :: header"></div>
+<body>
+	<div th:replace="fragments/fragments.html :: nav_header"></div>
+	<div class="container mt-sm-3">
+		<div id="infos" th:each="animal: ${animals}" class="mt-sm-3">
+			<h1 th:text="${animal.name}"></h1>
+			<img class="rounded float-right" width="40%"
+				th:src="@{'/images/' + ${animal.image_url}}">
+			<h3>Description</h3>
+			<p th:text="${animal.description}"></p>
+			<h3>Alimentation</h3>
+			<p th:text="${animal.alimentation}"></p>
+			<h3>Location</h3>
+			<p th:text="${animal.location}"></p>
+			<h3>Classification</h3>
+			<p th:text="${animal.classification}"></p>
+			<h3>Height</h3>
+			<p>
+				<span th:text="${animal.height}"></span> cm
+			</p>
+			<h3>Weight</h3>
+			<p>
+				<span th:text="${animal.weight}"></span> kg
+			</p>
+			<form action="#" th:action="@{/updateForm}" th:object="${animal}"
+				th:method="post"
+				th:if="${isUserAdmin == True OR userID == animal.userId}">
+				<input type="hidden" th:value="${animal.id}" name="animalID" /> <input
+					type="hidden" th:value="${animal.name}" name="animalName" /> <input
+					type="hidden" th:value="${animal.description}"
+					name="animalDescription" /> <input type="hidden"
+					th:value="${animal.alimentation}" name="animalAlimentation" /> <input
+					type="hidden" th:value="${animal.location}" name="animalLocation" />
+				<input type="hidden" th:value="${animal.classification}"
+					name="animalClassification" /> <input type="hidden"
+					th:value="${animal.height}" name="animalHeight" /> <input
+					type="hidden" th:value="${animal.weight}" name="animalWeight" />
+				<button type="submit" class="btn btn-primary">Update</button>
+			</form>
+			<br /> <br />
 		</div>
-		<div th:replace="fragments/fragments.html :: scripts"></div>
-	</body>
+		<p>
+			<a class="btn btn-info" th:href="@{/}">Go home</a>
+		</p>
+	</div>
+	<div th:replace="fragments/fragments.html :: scripts"></div>
+</body>
 </html>

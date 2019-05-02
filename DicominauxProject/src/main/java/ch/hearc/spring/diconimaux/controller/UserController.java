@@ -45,16 +45,18 @@ public class UserController {
 
 		if (userExists != null) {
 			bindingResult.rejectValue("email", "error.user", "This email already exists!");
+			return new ModelAndView("redirect:/signup?error=true");
 		}
 		if (bindingResult.hasErrors()) {
-			model.setViewName("signup");
+			return new ModelAndView("redirect:/signup?error=true");
 		} else {
 			userService.saveUser(user);
 			model.addObject("msg", "User has been registered successfully!");
 			model.addObject("user", new User());
 			model.setViewName("home");
+			return new ModelAndView("redirect:/login");
 		}
 
-		return model;
+		
 	}
 }

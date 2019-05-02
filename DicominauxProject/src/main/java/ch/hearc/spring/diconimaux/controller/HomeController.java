@@ -1,5 +1,7 @@
 package ch.hearc.spring.diconimaux.controller;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,6 @@ import ch.hearc.spring.diconimaux.service.UserService;
 @Controller
 public class HomeController {
 
-
 	@Autowired
 	AnimalRepository animalRepository;
 	@Autowired
@@ -35,9 +36,6 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
-	
-
-
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public ModelAndView home() {
@@ -45,18 +43,28 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		if (user != null) {
-			boolean isUserAdmin = auth.getAuthorities().stream()
-			          .anyMatch(r -> r.getAuthority().equals("ADMIN"));
-			boolean isUserConnected = auth.getAuthorities().stream()
-			          .anyMatch(r -> r.getAuthority().equals("USER"));
+			boolean isUserAdmin = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ADMIN"));
+			boolean isUserConnected = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("USER"));
 			model.addObject("userName", user.getUsername());
 			model.addObject("isUserAdmin", isUserAdmin);
 			model.addObject("isUserConnected", isUserConnected);
 			model.addObject("userID", user.getId());
 		}
-		
+
 		model.addObject("page", "Accueil");
 		model.addObject("animals", animalRepository.findAll(new PageRequest(0, PageableAnimal.nbAnimalPerPage)));
+
+		// calc nb pages
+		ArrayList<Integer> pagesNumbers = new ArrayList<Integer>();
+		double nbPages = (double) animalRepository.findAll().size() / (double) PageableAnimal.nbAnimalPerPage;
+		double i;
+		for (i = 1; i <= nbPages; i++) {
+			pagesNumbers.add((int) i);
+		}
+		if (i - nbPages != 1)
+			pagesNumbers.add((int) i);
+		model.addObject("pagesNumber", pagesNumbers);
+
 		model.addObject("locations", locationRepository.findAll());
 		model.addObject("classifications", classificationRepository.findAll());
 		model.addObject("alimentations", alimentationRepository.findAll());
@@ -69,10 +77,8 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		if (user != null) {
-			boolean isUserAdmin = auth.getAuthorities().stream()
-			          .anyMatch(r -> r.getAuthority().equals("ADMIN"));
-			boolean isUserConnected = auth.getAuthorities().stream()
-			          .anyMatch(r -> r.getAuthority().equals("USER"));
+			boolean isUserAdmin = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ADMIN"));
+			boolean isUserConnected = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("USER"));
 			model.put("userName", user.getUsername());
 			model.put("isUserAdmin", isUserAdmin);
 			model.put("isUserConnected", isUserConnected);
@@ -80,13 +86,20 @@ public class HomeController {
 		}
 
 		model.put("page", "Accueil");
-
 		model.put("animals", animalRepository.findAll(new PageRequest(page - 1, PageableAnimal.nbAnimalPerPage)));
 
+		// calc nb pages
+		ArrayList<Integer> pagesNumbers = new ArrayList<Integer>();
+		double nbPages = (double) animalRepository.findAll().size() / (double) PageableAnimal.nbAnimalPerPage;
+		double i;
+		for (i = 1; i <= nbPages; i++) {
+			pagesNumbers.add((int) i);
+		}
+		if (i - nbPages != 1)
+			pagesNumbers.add((int) i);
+		model.put("pagesNumber", pagesNumbers);
 		model.put("locations", locationRepository.findAll());
-
 		model.put("classifications", classificationRepository.findAll());
-
 		model.put("alimentations", alimentationRepository.findAll());
 
 		return "home";
@@ -111,22 +124,20 @@ public class HomeController {
 		User user = userService.findUserByEmail(auth.getName());
 
 		if (user != null) {
-			boolean isUserAdmin = auth.getAuthorities().stream()
-			          .anyMatch(r -> r.getAuthority().equals("ADMIN"));
-			boolean isUserConnected = auth.getAuthorities().stream()
-			          .anyMatch(r -> r.getAuthority().equals("USER"));
+			boolean isUserAdmin = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ADMIN"));
+			boolean isUserConnected = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("USER"));
 			model.addObject("userName", user.getUsername());
 			model.addObject("isUserAdmin", isUserAdmin);
 			model.addObject("isUserConnected", isUserConnected);
 			model.addObject("userID", user.getId());
 		}
-		
+
 		model.addObject("animals", animalRepository.findAll());
 		model.addObject("alimentations", alimentationRepository.findAll());
 
 		model.addObject("locations", locationRepository.findAll());
 		model.addObject("classifications", classificationRepository.findAll());
-		
+
 		model.setViewName("data-list");
 
 		return model;

@@ -2,16 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <div th:replace="fragments/fragments.html :: header"></div>
 	<body>
-	
 		<div th:replace="fragments/fragments.html :: nav_header"></div>
 		<div class="container mt-sm-3">
 			<h1>Add a location</h1>
-				
 		    <form action="#" th:action="@{/saveLocation}" th:object="${location}" method="post">
-		    
 		    	<div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter name">
+                    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter name" required>
                 </div> 
 		        <button type="submit" class="btn btn-primary">Add</button>
 		        <button type="reset" class="btn btn-primary">Reset</button>

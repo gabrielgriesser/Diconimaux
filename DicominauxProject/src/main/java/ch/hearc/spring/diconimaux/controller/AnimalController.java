@@ -201,12 +201,12 @@ public class AnimalController {
 			System.out.println("DESCRIPTION : " + animal.getDescription());
 			System.out.println("Height : " + animal.getHeight());
 
-			if (animal.getName() == "")
+			if (animal.getName().isBlank())
 				a.setName(animalName);
 			else
 				a.setName(animal.getName());
 
-			if (animal.getDescription() == "")
+			if (animal.getDescription().isBlank())
 				a.setDescription(animalDescription);
 			else
 				a.setDescription(animal.getDescription());
